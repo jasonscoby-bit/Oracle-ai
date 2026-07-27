@@ -1,0 +1,41 @@
+# Oracle Data Dictionary
+
+## Trader
+
+An elite Polymarket participant tracked by Oracle-AI.
+
+---
+
+## Position
+
+A YES or NO investment in a market.
+
+---
+
+## Theme
+
+A group of related markets.
+
+---
+
+## Consensus
+
+Multiple elite traders independently entering similar positions.
+
+---
+
+## Oracle Score
+
+Confidence score from 0-100.
+
+---
+
+## Heat Index
+
+Cold
+
+Warm
+
+Hot
+
+Oracle Alert
