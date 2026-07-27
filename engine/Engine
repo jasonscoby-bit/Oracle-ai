@@ -2,3 +2,21 @@ engine/
 ├── consensus-engine.md
 ├── scoring-model.md
 └── market-themes.md
+# Oracle Consensus Engine
+
+## Purpose
+
+The Oracle Consensus Engine measures where elite Polymarket traders independently agree.
+
+The engine evaluates:
+
+- Number of active traders
+- Capital committed
+- Trader specialization
+- Position conviction
+- Timing
+- Market category
+
+The output is an Oracle Score between 0 and 100.
+
+Higher scores indicate stronger evidence of elite consensus.
