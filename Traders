@@ -1,1 +1,11 @@
-traders/traders.csv
+Rank,Wallet,Specialty,Status
+1,0x204f72f35326db932158cba6adff0b9a1da95e14,Soccer,Active
+5,0x83720820a8aa6c3f20ad71850e7a1a17d16c5223,Pending,Active
+9,0x2c335066fe58fe9237c3d3dc7b275c2a034a0563,Pending,Active
+10,0xfea31bc088000ff909be1dfd8d0e3f2c7ef2d227,Pending,Active
+11,0xd1c537b2a7cba8d365e111bffb9de7b205e2cbd0,Pending,Active
+16,0x076daa87c4fe1a85402a9b6b8e0a866224388d4,Multi-Sport,Active
+17,0xc31d0a0d63d760d72a1236d16beaa6a71c854ebe,Politics,Active
+20,0x2005d16a84ceefa912d4e380cd32e7ff827875ea,Soccer/Tennis,Active
+23,0x714a685b5454ea4d52979563bbafa77b8168ab2f,Macro,Active
+28,0x3dfb153c197d4c19d3b31c1ecd2c7b6860eeabaf,Sports,Active
