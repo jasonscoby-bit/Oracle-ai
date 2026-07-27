@@ -1,5 +1,6 @@
 prototype/
 ├── sample-positions.csv
+TraderRank,Wallet,Market,Theme,Side,PositionValue,EntryPrice,Status
 ├── oracle-report.md
 ├── consensus-events.csv
 └── test-results.md
