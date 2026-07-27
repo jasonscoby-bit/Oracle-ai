@@ -20,3 +20,43 @@ The engine evaluates:
 The output is an Oracle Score between 0 and 100.
 
 Higher scores indicate stronger evidence of elite consensus.
+# Oracle Scoring Model v1
+
+## Formula
+
+Oracle Score =
+35% Consensus
+25% Capital
+20% Trader Quality
+10% Conviction
+10% Freshness
+
+---
+
+Consensus
+
+How many elite traders agree?
+
+---
+
+Capital
+
+Total money committed.
+
+---
+
+Trader Quality
+
+Leaderboard rank and historical performance.
+
+---
+
+Conviction
+
+Large positions increase confidence.
+
+---
+
+Freshness
+
+Recent entries receive higher weight.
