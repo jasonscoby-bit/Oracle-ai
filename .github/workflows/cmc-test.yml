@@ -1,1 +1,44 @@
+name: CMC BTC Test
 
+on:
+  workflow_dispatch:
+
+jobs:
+  test-cmc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Test CoinMarketCap
+        env:
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+        run: |
+          node -e "
+          const { getCryptoQuote } = require('./cmc_api.js');
+
+          getCryptoQuote('BTC')
+            .then(data => {
+              console.log('CMC CONNECTION: SUCCESS');
+              console.log('Symbol:', data.symbol);
+              console.log('Name:', data.name);
+              console.log('Price:', data.price);
+              console.log('Market Cap:', data.marketCap);
+              console.log('24h Volume:', data.volume24h);
+              console.log('1h Change:', data.change1h);
+              console.log('24h Change:', data.change24h);
+              console.log('7d Change:', data.change7d);
+              console.log('30d Change:', data.change30d);
+            })
+            .catch(error => {
+              console.error('CMC CONNECTION: FAILED');
+              console.error(error.message);
+              process.exit(1);
+            });
+          "
