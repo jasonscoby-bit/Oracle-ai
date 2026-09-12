@@ -206,8 +206,9 @@ function calibrateBullBear(history) {
   }
 
   return {
-    observations: history.length,
+  observations: history.length,
 
+  calibration: {
     volatility:
       calibrateVolatility(history),
 
@@ -216,7 +217,8 @@ function calibrateBullBear(history) {
 
     trend:
       calibrateTrend(history)
-  };
+  }
+};
 }
 
 module.exports = {
