@@ -52,21 +52,27 @@ jobs:
               console.log('Positive Ratio:', result.positiveRatio);
               console.log('');
               console.log('CALIBRATION:');
-              console.log(''):
-              console.log('Volatility Percentile:',
-              result.calibration.volatilityPercentile);              
+              console.log('');
+              console.log(
+              'Volatility Percentile:',
+              result.calibration.volatility.volatilityPercentile
+              );
               console.log(
               'Volatility Score:',
-              result.calibration.volatilityScore
+              result.calibration.volatility.volatilityScore
               );
               console.log(
               'Volume Percentile:',
-              result.calibration.volumePercentile
+              result.calibration.volume.volumePercentile
               );
               console.log(
               'Volume Score:',
-              result.calibration.volumeScore
-              );
+               result.calibration.volume.volumeScore
+               );
+               console.log(
+               'Trend Score:',
+               result.calibration.trend.trendScore
+               );
               console.log('Market Cap:', result.marketCap);
               console.log('24h Volume:', result.volume24h);
               console.log('1h Change:', result.change1h);
@@ -75,7 +81,7 @@ jobs:
               console.log('30d Change:', result.change30d);
               console.log('Last Updated:', result.lastUpdated);
               console.log('================================');
-            })
+              })
             .catch(error => {
               console.error('BULLBEAR TEST FAILED');
               console.error(error.message);
