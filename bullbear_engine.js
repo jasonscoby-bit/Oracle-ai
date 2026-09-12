@@ -172,13 +172,16 @@ async function runBullBear(symbol = "BTC") {
   const history = await getHistoricalBTC(30);
 
   const analytics =
-    analyzeBullBearHistory(history);
+  analyzeBullBearHistory(history);
 
-  return scoreBullBear(
-    marketData,
-    analytics
-  );
-}
+const calibration =
+  calibrateBullBear(history);
+
+return scoreBullBear(
+  marketData,
+  analytics,
+  calibration
+);
 
 module.exports = {
   scoreBullBear,
