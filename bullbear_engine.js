@@ -1,7 +1,7 @@
 const { getCryptoQuote } = require("./cmc_api");
 const { getHistoricalBTC } = require("./cmc_history");
 const { analyzeBullBearHistory } = require("./bullbear_analytics");
-
+const { calibrateBullBear } = require("./bullbear_calibration");
 function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, value));
 }
