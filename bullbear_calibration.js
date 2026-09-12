@@ -18,21 +18,47 @@ function calculateReturnDistribution(history) {
   const returns = [];
 
   for (let i = 1; i < history.length; i++) {
-    const previous = Number(history[i - 1].price);
-    const current = Number(history[i].price);
+    const previousPrice = Number(history[i - 1].price);
+    const currentPrice = Number(history[i].price);
 
-    if (!previous || !current) continue;
+    if (!previousPrice || !currentPrice) {
+      continue;
+    }
 
-    returns.push(current / previous - 1);
+    returns.push(
+      currentPrice / previousPrice - 1
+    );
   }
 
   return returns;
 }
 
-function calibrateVolatility(history) {
-  const returns = calculateReturnDistribution(history);
+function standardDeviation(values) {
+  if (values.length < 2) return 0;
 
-  if (!returns.length) {
+  const mean =
+    values.reduce(
+      (sum, value) => sum + value,
+      0
+    ) / values.length;
+
+  const variance =
+    values.reduce(
+      (sum, value) =>
+        sum + Math.pow(value - mean, 2),
+      0
+    ) / (values.length - 1);
+
+  return Math.sqrt(variance);
+}
+
+function calibrateVolatility(history) {
+  const returns =
+    calculateReturnDistribution(history);
+
+  const windowSize = 5;
+
+  if (returns.length < windowSize + 1) {
     return {
       currentDailyVolatility: 0,
       volatilityPercentile: 50,
@@ -40,47 +66,37 @@ function calibrateVolatility(history) {
     };
   }
 
-  const mean =
-    returns.reduce((sum, value) => sum + value, 0) /
-    returns.length;
-
-  const variance =
-    returns.reduce(
-      (sum, value) =>
-        sum + Math.pow(value - mean, 2),
-      0
-    ) / Math.max(returns.length - 1, 1);
-
-  const currentDailyVolatility = Math.sqrt(variance);
-
   const rollingVolatilities = [];
 
-  for (let i = 5; i <= returns.length; i++) {
-    const window = returns.slice(i - 5, i);
-
-    const windowMean =
-      window.reduce((sum, value) => sum + value, 0) /
-      window.length;
-
-    const windowVariance =
-      window.reduce(
-        (sum, value) =>
-          sum + Math.pow(value - windowMean, 2),
-        0
-      ) / Math.max(window.length - 1, 1);
+  for (
+    let i = windowSize;
+    i <= returns.length;
+    i++
+  ) {
+    const window = returns.slice(
+      i - windowSize,
+      i
+    );
 
     rollingVolatilities.push(
-      Math.sqrt(windowVariance)
+      standardDeviation(window)
     );
   }
 
-  const volatilityPercentile = percentileRank(
-    rollingVolatilities,
-    currentDailyVolatility
-  );
+  const currentDailyVolatility =
+    rollingVolatilities[
+      rollingVolatilities.length - 1
+    ];
 
-  // Moderate volatility is preferred.
-  // Extremely high volatility lowers the score.
+  const previousVolatilities =
+    rollingVolatilities.slice(0, -1);
+
+  const volatilityPercentile =
+    percentileRank(
+      previousVolatilities,
+      currentDailyVolatility
+    );
+
   let volatilityScore;
 
   if (volatilityPercentile <= 40) {
@@ -104,10 +120,12 @@ function calibrateVolume(history) {
   const volumes = history
     .map(item => Number(item.volume24h))
     .filter(
-      value => Number.isFinite(value) && value > 0
+      value =>
+        Number.isFinite(value) &&
+        value > 0
     );
 
-  if (!volumes.length) {
+  if (volumes.length < 2) {
     return {
       currentVolume: 0,
       volumePercentile: 50,
@@ -118,10 +136,14 @@ function calibrateVolume(history) {
   const currentVolume =
     volumes[volumes.length - 1];
 
-  const volumePercentile = percentileRank(
-    volumes,
-    currentVolume
-  );
+  const previousVolumes =
+    volumes.slice(0, -1);
+
+  const volumePercentile =
+    percentileRank(
+      previousVolumes,
+      currentVolume
+    );
 
   let volumeScore;
 
@@ -145,7 +167,8 @@ function calibrateVolume(history) {
 }
 
 function calibrateTrend(history) {
-  const returns = calculateReturnDistribution(history);
+  const returns =
+    calculateReturnDistribution(history);
 
   if (!returns.length) {
     return {
@@ -155,7 +178,9 @@ function calibrateTrend(history) {
   }
 
   const positiveDays =
-    returns.filter(value => value > 0).length;
+    returns.filter(
+      value => value > 0
+    ).length;
 
   const positiveRatio =
     positiveDays / returns.length;
@@ -171,7 +196,10 @@ function calibrateTrend(history) {
 }
 
 function calibrateBullBear(history) {
-  if (!Array.isArray(history) || history.length < 10) {
+  if (
+    !Array.isArray(history) ||
+    history.length < 10
+  ) {
     throw new Error(
       "At least 10 historical observations are required"
     );
@@ -179,110 +207,22 @@ function calibrateBullBear(history) {
 
   return {
     observations: history.length,
-    volatility: calibrateVolatility(history),
-    volume: calibrateVolume(history),
-    trend: calibrateTrend(history)
+
+    volatility:
+      calibrateVolatility(history),
+
+    volume:
+      calibrateVolume(history),
+
+    trend:
+      calibrateTrend(history)
   };
 }
 
 module.exports = {
   percentileRank,
   calculateReturnDistribution,
-  calibrateVolatility,
-  calibrateVolume,
-  calibrateTrend,
-  calibrateBullBear
-};
-}
-
-function calibrateVolume(history) {
-  const volumes = history
-    .map(item => Number(item.volume24h))
-    .filter(
-      value => Number.isFinite(value) && value > 0
-    );
-
-  if (!volumes.length) {
-    return {
-      currentVolume: 0,
-      volumePercentile: 50,
-      volumeScore: 50
-    };
-  }
-
-  const currentVolume =
-    volumes[volumes.length - 1];
-
-  const volumePercentile = percentileRank(
-    volumes,
-    currentVolume
-  );
-
-  let volumeScore;
-
-  if (volumePercentile >= 80) {
-    volumeScore = 70;
-  } else if (volumePercentile >= 60) {
-    volumeScore = 60;
-  } else if (volumePercentile >= 40) {
-    volumeScore = 50;
-  } else if (volumePercentile >= 20) {
-    volumeScore = 45;
-  } else {
-    volumeScore = 40;
-  }
-
-  return {
-    currentVolume,
-    volumePercentile,
-    volumeScore: clamp(volumeScore)
-  };
-}
-
-function calibrateTrend(history) {
-  const returns = calculateReturnDistribution(history);
-
-  if (!returns.length) {
-    return {
-      positiveRatio: 0.5,
-      trendScore: 50
-    };
-  }
-
-  const positiveDays =
-    returns.filter(value => value > 0).length;
-
-  const positiveRatio =
-    positiveDays / returns.length;
-
-  const trendScore = clamp(
-    50 + (positiveRatio - 0.5) * 100
-  );
-
-  return {
-    positiveRatio,
-    trendScore
-  };
-}
-
-function calibrateBullBear(history) {
-  if (!Array.isArray(history) || history.length < 10) {
-    throw new Error(
-      "At least 10 historical observations are required"
-    );
-  }
-
-  return {
-    observations: history.length,
-    volatility: calibrateVolatility(history),
-    volume: calibrateVolume(history),
-    trend: calibrateTrend(history)
-  };
-}
-
-module.exports = {
-  percentileRank,
-  calculateReturnDistribution,
+  standardDeviation,
   calibrateVolatility,
   calibrateVolume,
   calibrateTrend,
