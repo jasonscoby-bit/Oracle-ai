@@ -1,0 +1,55 @@
+name: CMC Historical Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-history:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Test Historical CMC Data
+        env:
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+        run: |
+          node -e "
+          const { getHistoricalBTC } = require('./cmc_history.js');
+
+          getHistoricalBTC(30)
+            .then(data => {
+              console.log('');
+              console.log('================================');
+              console.log('    CMC HISTORICAL BTC TEST');
+              console.log('================================');
+              console.log('Observations:', data.length);
+              console.log('');
+
+              if (data.length === 0) {
+                throw new Error('No historical data returned');
+              }
+
+              console.log('First observation:');
+              console.log(data[0]);
+
+              console.log('');
+              console.log('Latest observation:');
+              console.log(data[data.length - 1]);
+
+              console.log('');
+              console.log('HISTORICAL DATA: SUCCESS');
+              console.log('================================');
+            })
+            .catch(error => {
+              console.error('HISTORICAL DATA TEST FAILED');
+              console.error(error.message);
+              process.exit(1);
+            });
+          "
