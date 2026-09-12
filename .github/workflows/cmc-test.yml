@@ -1,6 +1,10 @@
 name: CMC BTC Test
 
 on:
+  push:
+    paths:
+      - "cmc_api.js"
+      - ".github/workflows/cmc-test.yml"
   workflow_dispatch:
 
 jobs:
