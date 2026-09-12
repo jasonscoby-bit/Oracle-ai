@@ -35,15 +35,13 @@ function clamp(value, min = 0, max = 100) {
   const dailyVolatility =
     analytics.volatility.dailyVolatility || 0;
 
-  const volatilityScore = clamp(
-    50 - ((dailyVolatility - 0.02) * 1000)
-  );
-
+  
+const volatilityScore =
+  calibration.volatility.volatilityScore;
   // Historical market direction based on the percentage
   // of positive daily returns.
-  const marketDirectionScore = clamp(
-    analytics.trend.positiveRatio * 100
-  );
+  const marketDirectionScore =
+  calibration.trend.trendScore;
 
   const score =
     momentumScore * 0.25 +
