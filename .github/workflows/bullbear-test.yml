@@ -54,7 +54,11 @@ jobs:
               console.log('CALIBRATION:');
               console.log(''):
               console.log('Volatility Percentile:',
-              result.calibration.volatilityPercentile);            console.log('MARKET DATA:');
+              result.calibration.volatilityPercentile);              
+              console.log(
+              'Volatility Score:',
+              result.calibration.volatilityScore
+              );
               console.log('Market Cap:', result.marketCap);
               console.log('24h Volume:', result.volume24h);
               console.log('1h Change:', result.change1h);
