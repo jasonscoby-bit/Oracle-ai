@@ -1,0 +1,87 @@
+name: BullBear Calibration Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-calibration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Test BullBear Calibration
+        env:
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+        run: |
+          node -e "
+          const { getHistoricalBTC } = require('./cmc_history.js');
+          const { calibrateBullBear } = require('./bullbear_calibration.js');
+
+          getHistoricalBTC(30)
+            .then(history => {
+              const result = calibrateBullBear(history);
+
+              console.log('');
+              console.log('================================');
+              console.log('   BULLBEAR CALIBRATION TEST');
+              console.log('================================');
+              console.log('Observations:', result.observations);
+              console.log('');
+
+              console.log('VOLATILITY CALIBRATION');
+              console.log(
+                'Current Daily Volatility:',
+                result.volatility.currentDailyVolatility
+              );
+              console.log(
+                'Volatility Percentile:',
+                result.volatility.volatilityPercentile
+              );
+              console.log(
+                'Volatility Score:',
+                result.volatility.volatilityScore
+              );
+              console.log('');
+
+              console.log('VOLUME CALIBRATION');
+              console.log(
+                'Current Volume:',
+                result.volume.currentVolume
+              );
+              console.log(
+                'Volume Percentile:',
+                result.volume.volumePercentile
+              );
+              console.log(
+                'Volume Score:',
+                result.volume.volumeScore
+              );
+              console.log('');
+
+              console.log('TREND CALIBRATION');
+              console.log(
+                'Positive Ratio:',
+                result.trend.positiveRatio
+              );
+              console.log(
+                'Trend Score:',
+                result.trend.trendScore
+              );
+              console.log('');
+
+              console.log('BULLBEAR CALIBRATION: SUCCESS');
+              console.log('================================');
+            })
+            .catch(error => {
+              console.error('CALIBRATION TEST FAILED');
+              console.error(error.message);
+              process.exit(1);
+            });
+          "
