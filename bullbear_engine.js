@@ -185,14 +185,13 @@ async function runBullBear(symbol = "BTC") {
       "Historical analytics currently supports BTC only"
     );
   }
-
-  const history = await getHistoricalBTC(30);
+const history = await getHistoricalBTC(30);
+  const calibration =
+  calibrateBullBear(history).calibration;
+  
 
   const analytics =
   analyzeBullBearHistory(history);
-
-const calibration =
-  calibrateBullBear(history);
 
 return scoreBullBear(
   marketData,
