@@ -1,0 +1,64 @@
+name: BullBear Analytics Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-analytics:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Test BullBear Analytics
+        env:
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+        run: |
+          node -e "
+          const { getHistoricalBTC } = require('./cmc_history.js');
+          const { analyzeBullBearHistory } = require('./bullbear_analytics.js');
+
+          getHistoricalBTC(30)
+            .then(history => {
+              const analysis = analyzeBullBearHistory(history);
+
+              console.log('');
+              console.log('================================');
+              console.log('   BULLBEAR ANALYTICS TEST');
+              console.log('================================');
+              console.log('Observations:', analysis.observations);
+              console.log('');
+              console.log('Price range:');
+              console.log('Oldest:', analysis.oldestPrice);
+              console.log('Latest:', analysis.latestPrice);
+              console.log('');
+              console.log('VOLATILITY');
+              console.log('Daily:', analysis.volatility.dailyVolatility);
+              console.log('Annualized:', analysis.volatility.annualizedVolatility);
+              console.log('');
+              console.log('VOLUME');
+              console.log('Latest:', analysis.volume.latestVolume);
+              console.log('Average:', analysis.volume.averageVolume);
+              console.log('Volume Ratio:', analysis.volume.volumeRatio);
+              console.log('');
+              console.log('TREND CONSISTENCY');
+              console.log('Positive Days:', analysis.trend.positiveDays);
+              console.log('Negative Days:', analysis.trend.negativeDays);
+              console.log('Positive Ratio:', analysis.trend.positiveRatio);
+              console.log('Negative Ratio:', analysis.trend.negativeRatio);
+              console.log('');
+              console.log('BULLBEAR ANALYTICS: SUCCESS');
+              console.log('================================');
+            })
+            .catch(error => {
+              console.error('ANALYTICS TEST FAILED');
+              console.error(error.message);
+              process.exit(1);
+            });
+          "
