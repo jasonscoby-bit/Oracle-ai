@@ -5,10 +5,11 @@ async function getCryptoQuote(symbol = "BTC") {
   const apiKey = process.env.CMC_API_KEY;
 
   if (!apiKey) {
-    throw new Error("CMC_API_KEY is not configured.");
+    throw new Error("CMC_API_KEY is not configured");
   }
 
-  const url = `${CMC_API_URL}?symbol=${symbol}&convert=USD`;
+  // Bitcoin = CoinMarketCap ID 1
+  const url = `${CMC_API_URL}?id=1&convert=USD`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -27,8 +28,21 @@ async function getCryptoQuote(symbol = "BTC") {
 
   const json = await response.json();
 
-  const coin = json.data[symbol];
-  const quote = coin.quote.USD;
+  const coin = Array.isArray(json.data)
+    ? json.data[0]
+    : json.data?.[1] || json.data?.[symbol];
+
+  if (!coin) {
+    throw new Error("Bitcoin data was not returned by CoinMarketCap");
+  }
+
+  const quote = Array.isArray(coin.quote)
+    ? coin.quote.find(q => q.symbol === "USD")
+    : coin.quote?.USD;
+
+  if (!quote) {
+    throw new Error("USD quote was not returned by CoinMarketCap");
+  }
 
   return {
     symbol: coin.symbol,
