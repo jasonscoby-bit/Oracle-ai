@@ -1,32 +1,57 @@
 const { getCryptoQuote } = require("./cmc_api");
+const { getHistoricalBTC } = require("./cmc_history");
+const { analyzeBullBearHistory } = require("./bullbear_analytics");
 
 function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, value));
 }
 
-function scoreBullBear(data) {
+function scoreBullBear(data, analytics) {
   const momentum = Number(data.change24h) || 0;
   const shortTerm = Number(data.change1h) || 0;
   const mediumTerm = Number(data.change7d) || 0;
   const longTerm = Number(data.change30d) || 0;
-  const volume = Number(data.volume24h) || 0;
 
-  // Normalize momentum signals around a neutral midpoint of 50.
+  // Price momentum
   const momentumScore = clamp(50 + momentum * 4);
+
+  // Short-term trend
   const shortTermScore = clamp(50 + shortTerm * 6);
+
+  // Medium-term trend
   const mediumTermScore = clamp(50 + mediumTerm * 2);
+
+  // Long-term trend
   const longTermScore = clamp(50 + longTerm);
 
-  // Volume is currently used as a confirmation signal.
-  const volumeScore = volume > 0 ? 60 : 40;
+  // Historical volume strength
+  const volumeRatio = analytics.volume.volumeRatio || 1;
+  const volumeScore = clamp(50 + (volumeRatio - 1) * 100);
+
+  // Historical volatility.
+  // Around 2% daily volatility is treated as neutral.
+  // Higher volatility reduces the score because it represents
+  // greater uncertainty/risk.
+  const dailyVolatility =
+    analytics.volatility.dailyVolatility || 0;
+
+  const volatilityScore = clamp(
+    50 - ((dailyVolatility - 0.02) * 1000)
+  );
+
+  // Historical market direction based on the percentage
+  // of positive daily returns.
+  const marketDirectionScore = clamp(
+    analytics.trend.positiveRatio * 100
+  );
 
   const score =
     momentumScore * 0.25 +
     volumeScore * 0.15 +
     shortTermScore * 0.20 +
     mediumTermScore * 0.20 +
-    longTermScore * 0.10 +
-    50 * 0.10;
+    volatilityScore * 0.10 +
+    marketDirectionScore * 0.10;
 
   const bullBearScore = Math.round(clamp(score));
 
@@ -48,7 +73,8 @@ function scoreBullBear(data) {
     direction = "Strong Bearish";
   }
 
-  const distanceFromNeutral = Math.abs(bullBearScore - 50);
+  const distanceFromNeutral =
+    Math.abs(bullBearScore - 50);
 
   let confidence;
 
@@ -86,27 +112,72 @@ function scoreBullBear(data) {
     factors.push("Negative 30-day trend");
   }
 
+  if (volumeRatio > 1.1) {
+    factors.push("Above-average trading volume");
+  } else if (volumeRatio < 0.9) {
+    factors.push("Below-average trading volume");
+  } else {
+    factors.push("Normal trading volume");
+  }
+
+  if (dailyVolatility > 0.03) {
+    factors.push("Elevated market volatility");
+  } else if (dailyVolatility < 0.015) {
+    factors.push("Lower market volatility");
+  } else {
+    factors.push("Moderate market volatility");
+  }
+
   return {
     coin: data.symbol,
     name: data.name,
     price: data.price,
+
     bullBearScore,
     direction,
     confidence,
+
     factors,
+
     marketCap: data.marketCap,
     volume24h: data.volume24h,
+
     change1h: data.change1h,
     change24h: data.change24h,
     change7d: data.change7d,
     change30d: data.change30d,
+
+    historicalVolumeRatio: volumeRatio,
+    dailyVolatility,
+    annualizedVolatility:
+      analytics.volatility.annualizedVolatility,
+
+    positiveDays: analytics.trend.positiveDays,
+    negativeDays: analytics.trend.negativeDays,
+    positiveRatio: analytics.trend.positiveRatio,
+
     lastUpdated: data.lastUpdated
   };
 }
 
 async function runBullBear(symbol = "BTC") {
   const marketData = await getCryptoQuote(symbol);
-  return scoreBullBear(marketData);
+
+  if (symbol !== "BTC") {
+    throw new Error(
+      "Historical analytics currently supports BTC only"
+    );
+  }
+
+  const history = await getHistoricalBTC(30);
+
+  const analytics =
+    analyzeBullBearHistory(history);
+
+  return scoreBullBear(
+    marketData,
+    analytics
+  );
 }
 
 module.exports = {
