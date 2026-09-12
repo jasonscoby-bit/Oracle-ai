@@ -1,1 +1,60 @@
+name: BullBear Live Test
 
+on:
+  workflow_dispatch:
+
+jobs:
+  test-bullbear:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Run BullBear
+        env:
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+        run: |
+          node -e "
+          const { runBullBear } = require('./bullbear_engine.js');
+
+          runBullBear('BTC')
+            .then(result => {
+              console.log('');
+              console.log('================================');
+              console.log('      ORACLE AI BULLBEAR');
+              console.log('================================');
+              console.log('Coin:', result.coin);
+              console.log('Name:', result.name);
+              console.log('Price:', result.price);
+              console.log('BullBear Score:', result.bullBearScore);
+              console.log('Direction:', result.direction);
+              console.log('Confidence:', result.confidence);
+              console.log('');
+              console.log('FACTORS:');
+
+              result.factors.forEach((factor, index) => {
+                console.log((index + 1) + '. ' + factor);
+              });
+
+              console.log('');
+              console.log('Market Cap:', result.marketCap);
+              console.log('24h Volume:', result.volume24h);
+              console.log('1h Change:', result.change1h);
+              console.log('24h Change:', result.change24h);
+              console.log('7d Change:', result.change7d);
+              console.log('30d Change:', result.change30d);
+              console.log('Last Updated:', result.lastUpdated);
+              console.log('================================');
+            })
+            .catch(error => {
+              console.error('BULLBEAR TEST FAILED');
+              console.error(error.message);
+              process.exit(1);
+            });
+          "
