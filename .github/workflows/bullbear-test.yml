@@ -63,6 +63,10 @@ jobs:
               'Volume Percentile:',
               result.calibration.volumePercentile
               );
+              console.log(
+              'Volume Score:',
+              result.calibration.volumeScore
+              );
               console.log('Market Cap:', result.marketCap);
               console.log('24h Volume:', result.volume24h);
               console.log('1h Change:', result.change1h);
