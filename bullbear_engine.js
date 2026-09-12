@@ -193,6 +193,7 @@ return scoreBullBear(
   analytics,
   calibration
 );
+  }
 module.exports = {
   scoreBullBear,
   runBullBear
