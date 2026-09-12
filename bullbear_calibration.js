@@ -193,3 +193,98 @@ module.exports = {
   calibrateTrend,
   calibrateBullBear
 };
+}
+
+function calibrateVolume(history) {
+  const volumes = history
+    .map(item => Number(item.volume24h))
+    .filter(
+      value => Number.isFinite(value) && value > 0
+    );
+
+  if (!volumes.length) {
+    return {
+      currentVolume: 0,
+      volumePercentile: 50,
+      volumeScore: 50
+    };
+  }
+
+  const currentVolume =
+    volumes[volumes.length - 1];
+
+  const volumePercentile = percentileRank(
+    volumes,
+    currentVolume
+  );
+
+  let volumeScore;
+
+  if (volumePercentile >= 80) {
+    volumeScore = 70;
+  } else if (volumePercentile >= 60) {
+    volumeScore = 60;
+  } else if (volumePercentile >= 40) {
+    volumeScore = 50;
+  } else if (volumePercentile >= 20) {
+    volumeScore = 45;
+  } else {
+    volumeScore = 40;
+  }
+
+  return {
+    currentVolume,
+    volumePercentile,
+    volumeScore: clamp(volumeScore)
+  };
+}
+
+function calibrateTrend(history) {
+  const returns = calculateReturnDistribution(history);
+
+  if (!returns.length) {
+    return {
+      positiveRatio: 0.5,
+      trendScore: 50
+    };
+  }
+
+  const positiveDays =
+    returns.filter(value => value > 0).length;
+
+  const positiveRatio =
+    positiveDays / returns.length;
+
+  const trendScore = clamp(
+    50 + (positiveRatio - 0.5) * 100
+  );
+
+  return {
+    positiveRatio,
+    trendScore
+  };
+}
+
+function calibrateBullBear(history) {
+  if (!Array.isArray(history) || history.length < 10) {
+    throw new Error(
+      "At least 10 historical observations are required"
+    );
+  }
+
+  return {
+    observations: history.length,
+    volatility: calibrateVolatility(history),
+    volume: calibrateVolume(history),
+    trend: calibrateTrend(history)
+  };
+}
+
+module.exports = {
+  percentileRank,
+  calculateReturnDistribution,
+  calibrateVolatility,
+  calibrateVolume,
+  calibrateTrend,
+  calibrateBullBear
+};
