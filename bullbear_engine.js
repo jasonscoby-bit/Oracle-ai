@@ -6,7 +6,7 @@ function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, value));
 }
 
-function scoreBullBear(data, analytics) {
+ function scoreBullBear(data, analytics, calibration) {
   const momentum = Number(data.change24h) || 0;
   const shortTerm = Number(data.change1h) || 0;
   const mediumTerm = Number(data.change7d) || 0;
