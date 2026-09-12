@@ -155,18 +155,24 @@ negativeDays: analytics.trend.negativeDays,
 positiveRatio: analytics.trend.positiveRatio,
 
 calibration: {
-  volatilityPercentile:
-    calibration.volatility.volatilityPercentile,
-  volatilityScore:
-    calibration.volatility.volatilityScore,
-  volumePercentile:
-    calibration.volume.volumePercentile,
-  volumeScore:
-    calibration.volume.volumeScore,
-  trendScore:
-    calibration.trend.trendScore
+  volatility: {
+    volatilityPercentile:
+      calibration.volatility.volatilityPercentile,
+    volatilityScore:
+      calibration.volatility.volatilityScore
+  },
+  volume: {
+    volumePercentile:
+      calibration.volume.volumePercentile,
+    volumeScore:
+      calibration.volume.volumeScore
+  },
+  trend: {
+    trendScore:
+      calibration.trend.trendScore
+  }
 },
-
+    
 lastUpdated: data.lastUpdated
   };
 }
