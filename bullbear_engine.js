@@ -151,10 +151,23 @@ const volatilityScore =
       analytics.volatility.annualizedVolatility,
 
     positiveDays: analytics.trend.positiveDays,
-    negativeDays: analytics.trend.negativeDays,
-    positiveRatio: analytics.trend.positiveRatio,
+negativeDays: analytics.trend.negativeDays,
+positiveRatio: analytics.trend.positiveRatio,
 
-    lastUpdated: data.lastUpdated
+calibration: {
+  volatilityPercentile:
+    calibration.volatility.volatilityPercentile,
+  volatilityScore:
+    calibration.volatility.volatilityScore,
+  volumePercentile:
+    calibration.volume.volumePercentile,
+  volumeScore:
+    calibration.volume.volumeScore,
+  trendScore:
+    calibration.trend.trendScore
+},
+
+lastUpdated: data.lastUpdated
   };
 }
 
@@ -180,7 +193,6 @@ return scoreBullBear(
   analytics,
   calibration
 );
-}
 module.exports = {
   scoreBullBear,
   runBullBear
