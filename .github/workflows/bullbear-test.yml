@@ -52,8 +52,9 @@ jobs:
               console.log('Positive Ratio:', result.positiveRatio);
               console.log('');
               console.log('CALIBRATION:');
-              console.log('');
-              console.log('MARKET DATA:');
+              console.log(''):
+              console.log('Volatility Percentile:',
+              result.calibration.volatilityPercentile);            console.log('MARKET DATA:');
               console.log('Market Cap:', result.marketCap);
               console.log('24h Volume:', result.volume24h);
               console.log('1h Change:', result.change1h);
