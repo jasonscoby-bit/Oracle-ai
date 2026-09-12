@@ -1,3 +1,6 @@
+const {
+  recordBullBearSignal
+} = require("./bullbear_signal_history");
 const { getCryptoQuote } = require("./cmc_api");
 const { getHistoricalBTC } = require("./cmc_history");
 const { analyzeBullBearHistory } = require("./bullbear_analytics");
@@ -193,11 +196,21 @@ const history = await getHistoricalBTC(30);
   const analytics =
   analyzeBullBearHistory(history);
 
-return scoreBullBear(
+const result = scoreBullBear(
   marketData,
   analytics,
   calibration
 );
+
+recordBullBearSignal({
+  asset: result.coin,
+  score: result.bullBearScore,
+  signal: result.direction,
+  price: result.price,
+  confidence: result.confidence
+});
+
+return result;
   }
 module.exports = {
   scoreBullBear,
