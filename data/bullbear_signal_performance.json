@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp": "2026-09-13T02:21:52.108Z",
+    "coin": "BTC",
+    "priceAtSignal": 77267.85760593414,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 53,
+    "status": "pending"
+  }
+]
