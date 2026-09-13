@@ -7,5 +7,14 @@
     "confidence": "Low",
     "bullBearScore": 53,
     "status": "pending"
+  },
+  {
+    "timestamp": "2026-09-13T02:55:11.898Z",
+    "coin": "BTC",
+    "priceAtSignal": 77297.50938818451,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 53,
+    "status": "pending"
   }
 ]
