@@ -9,8 +9,8 @@ async function getHistoricalPrice(timestamp) {
   }
 
   const target = new Date(timestamp);
-  const start = new Date(target.getTime() - 30 * 60 * 1000);
-  const end = new Date(target.getTime() + 30 * 60 * 1000);
+  const start = new Date(target.getTime() - 2 * 60 * 60 * 1000);
+const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const params = new URLSearchParams({
     id: "1",
@@ -46,12 +46,24 @@ async function getHistoricalPrice(timestamp) {
     return null;
   }
 
-  const quote = bitcoin.quotes[0];
+  const quote = bitcoin.quotes.reduce((closest, current) => {
+  const closestDistance = Math.abs(
+    new Date(closest.timestamp).getTime() - target.getTime()
+  );
 
-  return {
-    timestamp: quote.timestamp,
-    price: quote.quote.USD.price
-  };
+  const currentDistance = Math.abs(
+    new Date(current.timestamp).getTime() - target.getTime()
+  );
+
+  return currentDistance < closestDistance
+    ? current
+    : closest;
+});
+
+return {
+  timestamp: quote.timestamp,
+  price: quote.quote.USD.price
+};
 }
 
 module.exports = {
