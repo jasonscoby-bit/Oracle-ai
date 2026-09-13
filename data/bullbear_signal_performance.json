@@ -38,6 +38,13 @@
     "direction": "Neutral",
     "confidence": "Low",
     "bullBearScore": 53,
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-13T04:41:06.717Z",
+      "actualTimestamp": "2026-09-13T04:40:00.000Z",
+      "price": 77186.12850953387,
+      "priceChangePercent": -0.004537838617639799,
+      "result": "correct"
+    }
   }
 ]
