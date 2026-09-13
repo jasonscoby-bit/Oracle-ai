@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const { getHistoricalPrice } = require("./cmc_performance_history");
 const HISTORY_FILE = "./data/bullbear_signal_history.json";
 const PERFORMANCE_FILE = "./data/bullbear_signal_performance.json";
 
