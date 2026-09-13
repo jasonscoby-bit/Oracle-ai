@@ -1,0 +1,59 @@
+const CMC_HISTORY_URL =
+  "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical";
+
+async function getHistoricalPrice(timestamp) {
+  const apiKey = process.env.CMC_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("CMC_API_KEY is not configured");
+  }
+
+  const target = new Date(timestamp);
+  const start = new Date(target.getTime() - 30 * 60 * 1000);
+  const end = new Date(target.getTime() + 30 * 60 * 1000);
+
+  const params = new URLSearchParams({
+    id: "1",
+    time_start: start.toISOString(),
+    time_end: end.toISOString(),
+    interval: "1h",
+    convert: "USD"
+  });
+
+  const response = await fetch(
+    `${CMC_HISTORY_URL}?${params.toString()}`,
+    {
+      method: "GET",
+      headers: {
+        "X-CMC_PRO_API_KEY": apiKey,
+        "Accept": "application/json"
+      }
+    }
+  );
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `CMC historical request failed: ${response.status} ${text}`
+    );
+  }
+
+  const data = await response.json();
+
+  const bitcoin = data.data?.["1"];
+
+  if (!bitcoin || !bitcoin.quotes || bitcoin.quotes.length === 0) {
+    return null;
+  }
+
+  const quote = bitcoin.quotes[0];
+
+  return {
+    timestamp: quote.timestamp,
+    price: quote.quote.USD.price
+  };
+}
+
+module.exports = {
+  getHistoricalPrice
+};
