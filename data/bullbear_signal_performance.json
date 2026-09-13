@@ -6,12 +6,35 @@
     "direction": "Neutral",
     "confidence": "Low",
     "bullBearScore": 53,
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-13T03:21:52.108Z",
+      "actualTimestamp": "2026-09-13T03:20:00.000Z",
+      "price": 77265.23628804338,
+      "priceChangePercent": -0.0033925075341579448,
+      "result": "correct"
+    }
   },
   {
     "timestamp": "2026-09-13T02:55:11.898Z",
     "coin": "BTC",
     "priceAtSignal": 77297.50938818451,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 53,
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-13T03:55:11.898Z",
+      "actualTimestamp": "2026-09-13T03:55:00.000Z",
+      "price": 77188.29231203368,
+      "priceChangePercent": -0.1412944311081853,
+      "result": "correct"
+    }
+  },
+  {
+    "timestamp": "2026-09-13T03:41:06.717Z",
+    "coin": "BTC",
+    "priceAtSignal": 77189.63125042956,
     "direction": "Neutral",
     "confidence": "Low",
     "bullBearScore": 53,
