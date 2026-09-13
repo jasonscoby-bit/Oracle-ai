@@ -58,6 +58,28 @@ function calculateAccuracy() {
   const neutral = completed.filter(
     record => record.direction === "Neutral"
   );
+    const lowConfidence = completed.filter(
+    record => record.confidence === "Low"
+  );
+
+  const mediumConfidence = completed.filter(
+    record => record.confidence === "Medium"
+  );
+
+  const highConfidence = completed.filter(
+    record => record.confidence === "High"
+  );
+    const lowConfidenceCorrect = lowConfidence.filter(
+    record => record.oneHour?.result === "correct"
+  );
+
+  const mediumConfidenceCorrect = mediumConfidence.filter(
+    record => record.oneHour?.result === "correct"
+  );
+
+  const highConfidenceCorrect = highConfidence.filter(
+    record => record.oneHour?.result === "correct"
+  );
   const accuracy =
     completed.length > 0
       ? (correct.length / completed.length) * 100
@@ -100,8 +122,28 @@ function calculateAccuracy() {
   correct: neutralCorrect.length,
   accuracy: neutral.length > 0
     ? Number((neutralCorrect.length / neutral.length * 100).toFixed(2))
-    : 0
-},
+    : 0,
+    lowConfidence: {
+      total: lowConfidence.length,
+      correct: lowConfidenceCorrect.length,
+      accuracy: lowConfidence.length > 0
+        ? Number((lowConfidenceCorrect.length / lowConfidence.length) * 100)
+        : 0
+    },
+    mediumConfidence: {
+      total: mediumConfidence.length,
+      correct: mediumConfidenceCorrect.length,
+      accuracy: mediumConfidence.length > 0
+        ? Number((mediumConfidenceCorrect.length / mediumConfidence.length) * 100)
+        : 0
+    },
+    highConfidence: {
+      total: highConfidence.length,
+      correct: highConfidenceCorrect.length,
+      accuracy: highConfidence.length > 0
+        ? Number((highConfidenceCorrect.length / highConfidence.length) * 100)
+        : 0
+    },
   };
 
   saveAccuracyHistory(summary);
