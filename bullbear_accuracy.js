@@ -2,7 +2,8 @@ const fs = require("fs");
 
 const PERFORMANCE_FILE =
   "./data/bullbear_signal_performance.json";
-
+const ACCURACY_HISTORY_FILE =
+  "./data/bullbear_accuracy_history.json";
 function loadPerformance() {
   if (!fs.existsSync(PERFORMANCE_FILE)) {
     return [];
@@ -12,7 +13,22 @@ function loadPerformance() {
     fs.readFileSync(PERFORMANCE_FILE, "utf8")
   );
 }
+function saveAccuracyHistory(summary) {
+  let history = [];
 
+  if (fs.existsSync(ACCURACY_HISTORY_FILE)) {
+    history = JSON.parse(
+      fs.readFileSync(ACCURACY_HISTORY_FILE, "utf8")
+    );
+  }
+
+  history.push(summary);
+
+  fs.writeFileSync(
+    ACCURACY_HISTORY_FILE,
+    JSON.stringify(history, null, 2)
+  );
+}
 function calculateAccuracy() {
   const records = loadPerformance();
 
@@ -36,7 +52,17 @@ function calculateAccuracy() {
     completed.length > 0
       ? (correct.length / completed.length) * 100
       : 0;
+  const summary = {
+    timestamp: new Date().toISOString(),
+    totalSignals: records.length,
+    completed: completed.length,
+    correct: correct.length,
+    incorrect: incorrect.length,
+    pending: pending.length,
+    accuracy: Number(accuracy.toFixed(2))
+  };
 
+  saveAccuracyHistory(summary);
   console.log("BullBear Accuracy Summary");
   console.log("=========================");
   console.log(`Total signals: ${records.length}`);
