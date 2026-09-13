@@ -23,6 +23,7 @@ jobs:
         env:
           CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
         run: node bullbear_performance.js
+     
       - name: Run accuracy calculation
         run: node bullbear_accuracy.js
       - name: Save performance history
