@@ -137,7 +137,15 @@ const volatilityScore =
     bullBearScore,
     direction,
     confidence,
-
+    componentScores: {
+        momentum: momentumScore,
+        volume: volumeScore,
+        shortTerm: shortTermScore,
+        mediumTerm: mediumTermScore,
+        longTerm: longTermScore,
+        volatility: volatilityScore,
+        marketDirection: marketDirectionScore
+    },
     factors,
 
     marketCap: data.marketCap,
