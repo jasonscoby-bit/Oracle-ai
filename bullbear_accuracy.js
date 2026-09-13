@@ -80,7 +80,7 @@ function calculateAccuracy() {
     correct: correct.length,
     incorrect: incorrect.length,
     pending: pending.length,
-      accuracy: Number(accuracy.toFixed(
+      accuracy: Number(accuracy.toFixed(2)),
     bullish: {
     total: bullish.length,
     correct: bullishCorrect.length,
