@@ -127,21 +127,21 @@ function calculateAccuracy() {
       total: lowConfidence.length,
       correct: lowConfidenceCorrect.length,
       accuracy: lowConfidence.length > 0
-        ? Number((lowConfidenceCorrect.length / lowConfidence.length) * 100)
+       ? Number((lowConfidenceCorrect.length / lowConfidence.length) * 100))
         : 0
     },
     mediumConfidence: {
       total: mediumConfidence.length,
       correct: mediumConfidenceCorrect.length,
       accuracy: mediumConfidence.length > 0
-        ? Number((mediumConfidenceCorrect.length / mediumConfidence.length) * 100)
+        ? Number((mediumConfidenceCorrect.length / mediumConfidence.length) * 100))
         : 0
     },
     highConfidence: {
       total: highConfidence.length,
       correct: highConfidenceCorrect.length,
       accuracy: highConfidence.length > 0
-        ? Number((highConfidenceCorrect.length / highConfidence.length) * 100)
+        ? Number((highConfidenceCorrect.length / highConfidence.length) * 100))
         : 0
     },
   };
