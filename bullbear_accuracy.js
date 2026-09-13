@@ -123,6 +123,7 @@ function calculateAccuracy() {
   accuracy: neutral.length > 0
     ? Number((neutralCorrect.length / neutral.length * 100).toFixed(2))
     : 0,
+        },
     lowConfidence: {
       total: lowConfidence.length,
       correct: lowConfidenceCorrect.length,
