@@ -128,7 +128,7 @@ function calculateAccuracy() {
       total: lowConfidence.length,
       correct: lowConfidenceCorrect.length,
       accuracy: lowConfidence.length > 0
-      ? Number((lowConfidenceCorrect.length / lowConfidence.length) * 100).toFixed(2)
+      ? Number(((lowConfidenceCorrect.length / lowConfidence.length) * 100).toFixed(2))
         : 0
     },
     mediumConfidence: {
