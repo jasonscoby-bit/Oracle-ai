@@ -19,8 +19,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run performance tracker
-        run: node bullbear_performance.js
+      - - name: Run performance tracker
+  env:
+    CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+  run: node bullbear_performance.js
 
       - name: Save performance history
         run: |
