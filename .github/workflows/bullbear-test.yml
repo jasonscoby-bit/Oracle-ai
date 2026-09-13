@@ -82,6 +82,7 @@ jobs:
               console.log('30d Change:', result.change30d);
               console.log('Last Updated:', result.lastUpdated);
               console.log('================================');
+              require('fs').writeFileSync('data/bullbear_signal_history.json', JSON.stringify([...(require('fs').existsSync('data/bullbear_signal_history.json') ? JSON.parse(require('fs').readFileSync('data/bullbear_signal_history.json','utf8')) : []), { timestamp: new Date().toISOString(), ...result }], null, 2));
               })
             .catch(error => {
               console.error('BULLBEAR TEST FAILED');
