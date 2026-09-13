@@ -3,6 +3,9 @@ name: BullBear Performance
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   performance:
     runs-on: ubuntu-latest
