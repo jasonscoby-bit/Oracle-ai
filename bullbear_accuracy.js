@@ -47,11 +47,32 @@ function calculateAccuracy() {
   const pending = records.filter(
     record => record.status === "pending"
   );
+  const bullish = completed.filter(
+    record => record.direction === "Bullish"
+  );
 
+  const bearish = completed.filter(
+    record => record.direction === "Bearish"
+  );
+
+  const neutral = completed.filter(
+    record => record.direction === "Neutral"
+  );
   const accuracy =
     completed.length > 0
       ? (correct.length / completed.length) * 100
       : 0;
+    const bullishCorrect = bullish.filter(
+    record => record.oneHour?.result === "correct"
+  );
+
+  const bearishCorrect = bearish.filter(
+    record => record.oneHour?.result === "correct"
+  );
+
+  const neutralCorrect = neutral.filter(
+    record => record.oneHour?.result === "correct"
+  );
   const summary = {
     timestamp: new Date().toISOString(),
     totalSignals: records.length,
@@ -59,7 +80,28 @@ function calculateAccuracy() {
     correct: correct.length,
     incorrect: incorrect.length,
     pending: pending.length,
-    accuracy: Number(accuracy.toFixed(2))
+      accuracy: Number(accuracy.toFixed(
+    bullish: {
+    total: bullish.length,
+    correct: bullishCorrect.length,
+    accuracy: bullish.length > 0
+      ? Number((bullishCorrect.length / bullish.length * 100).toFixed(2))
+      : 0
+    },
+    bearish: {
+  total: bearish.length,
+  correct: bearishCorrect.length,
+  accuracy: bearish.length > 0
+    ? Number((bearishCorrect.length / bearish.length * 100).toFixed(2))
+    : 0
+},
+  neutral: {
+  total: neutral.length,
+  correct: neutralCorrect.length,
+  accuracy: neutral.length > 0
+    ? Number((neutralCorrect.length / neutral.length * 100).toFixed(2))
+    : 0
+},
   };
 
   saveAccuracyHistory(summary);
