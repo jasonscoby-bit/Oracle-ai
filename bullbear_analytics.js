@@ -9,7 +9,7 @@ function calculateReturns(history) {
       continue;
     }
 
-    const dailyReturn = currentPrice / previousPrice - 1;
+    const dailyReturn = (currentPrice - previousPrice) / previousPrice;
     returns.push(dailyReturn);
   }
 
