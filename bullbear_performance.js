@@ -59,9 +59,9 @@ async function calculatePerformance() {
     }
 
     if (
-      record.status === "pending" &&
-      now >= oneHourTarget
-    ) {
+    (record.status === "pending" || record.oneHour?.result === "neutral") &&
+    now >= oneHourTarget) {
+ 
       const historicalPrice = await getHistoricalPrice(
         oneHourTarget.toISOString()
       );
