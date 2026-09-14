@@ -73,20 +73,19 @@ async function calculatePerformance() {
 
         let result = "neutral";
 
-        if (signal.direction === "Bullish") {
-          result =
-            priceChange > 0 ? "correct" : "incorrect";
-        } else if (signal.direction === "Bearish") {
-          result =
-            priceChange < 0 ? "correct" : "incorrect";
-        } else if (signal.direction === "Neutral") {
-          result =
-            Math.abs(priceChange) <= 0.01
-              ? "correct"
-              : "incorrect";
-        }
-
-        record.oneHour = {
+  if (signal.direction.includes("Bullish")) {
+  result =
+    priceChange > 0 ? "correct" : "incorrect";
+} else if (signal.direction.includes("Bearish")) {
+  result =
+    priceChange < 0 ? "correct" : "incorrect";
+} else if (signal.direction === "Neutral") {
+  result =
+    Math.abs(priceChange) <= 0.01
+      ? "correct"
+      : "incorrect";
+}
+            record.oneHour = {
           targetTimestamp: oneHourTarget.toISOString(),
           actualTimestamp: historicalPrice.timestamp,
           price: historicalPrice.price,
