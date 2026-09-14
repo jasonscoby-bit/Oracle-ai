@@ -110,5 +110,37 @@
       "priceChangePercent": -0.1530890139509695,
       "result": "correct"
     }
+  },
+  {
+    "timestamp": "2026-09-14T13:51:00.937Z",
+    "coin": "BTC",
+    "priceAtSignal": 78300.20217213231,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 47,
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-14T14:51:00.937Z",
+      "actualTimestamp": "2026-09-14T14:50:00.000Z",
+      "price": 78552.83239725228,
+      "priceChangePercent": 0.3226431325995732,
+      "result": "correct"
+    }
+  },
+  {
+    "timestamp": "2026-09-14T13:56:01.857Z",
+    "coin": "BTC",
+    "priceAtSignal": 78222.83309392822,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 46,
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-14T14:56:01.857Z",
+      "actualTimestamp": "2026-09-14T14:55:00.000Z",
+      "price": 78533.71007154856,
+      "priceChangePercent": 0.397424850678889,
+      "result": "correct"
+    }
   }
 ]
