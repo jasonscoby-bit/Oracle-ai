@@ -46,17 +46,22 @@ async function calculatePerformance() {
       item => item.timestamp === signal.timestamp
     );
 
-    if (!record) {
-      record = {
-        timestamp: signal.timestamp,
-        coin: signal.coin,
-        priceAtSignal: signal.price,
-        direction: signal.direction,
-        confidence: signal.confidence,
-        bullBearScore: signal.bullBearScore,
-        status: "pending"
-      };
-    }
+    if (record && !record.componentScores && signal.componentScores) {
+  record.componentScores = signal.componentScores;
+}
+
+if (!record) {
+  record = {
+    timestamp: signal.timestamp,
+    coin: signal.coin,
+    priceAtSignal: signal.price,
+    direction: signal.direction,
+    confidence: signal.confidence,
+    bullBearScore: signal.bullBearScore,
+    componentScores: signal.componentScores,
+    status: "pending"
+  };
+}
 
     if (
     (record.status === "pending" || record.oneHour?.result === "neutral") &&
