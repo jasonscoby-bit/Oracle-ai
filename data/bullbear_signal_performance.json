@@ -206,5 +206,21 @@
       "priceChangePercent": -0.2750664365869415,
       "result": "correct"
     }
+  },
+  {
+    "timestamp": "2026-09-15T08:04:07.007Z",
+    "coin": "BTC",
+    "priceAtSignal": 76828.16776335824,
+    "direction": "Slightly Bearish",
+    "confidence": "Low",
+    "bullBearScore": 41,
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-15T09:04:07.007Z",
+      "actualTimestamp": "2026-09-15T09:00:00.000Z",
+      "price": 76961.04573455914,
+      "priceChangePercent": 0.17295475744024164,
+      "result": "incorrect"
+    }
   }
 ]
