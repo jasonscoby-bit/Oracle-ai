@@ -25,7 +25,79 @@ function savePerformance(data) {
     JSON.stringify(data, null, 2)
   );
 }
+function printAccuracyBreakdown(results) {
+  const completed = results.filter(
+    record => record.status === "complete" && record.oneHour?.result
+  );
 
+  const confidenceStats = {
+    High: { correct: 0, total: 0 },
+    Medium: { correct: 0, total: 0 },
+    Low: { correct: 0, total: 0 }
+  };
+
+  const directionStats = {};
+
+  for (const record of completed) {
+    const confidence = record.confidence;
+
+    if (confidenceStats[confidence]) {
+      confidenceStats[confidence].total++;
+
+      if (record.oneHour.result === "correct") {
+        confidenceStats[confidence].correct++;
+      }
+    }
+
+    const direction = record.direction;
+
+    if (!directionStats[direction]) {
+      directionStats[direction] = { correct: 0, total: 0 };
+    }
+
+    directionStats[direction].total++;
+
+    if (record.oneHour.result === "correct") {
+      directionStats[direction].correct++;
+    }
+  }
+
+  console.log("\n===== BULLBEAR ACCURACY BREAKDOWN =====");
+
+  console.log(`Completed signals: ${completed.length}`);
+
+  console.log("\nBy Confidence:");
+
+  for (const level of ["High", "Medium", "Low"]) {
+    const stats = confidenceStats[level];
+
+    const accuracy =
+      stats.total > 0
+        ? ((stats.correct / stats.total) * 100).toFixed(2)
+        : "N/A";
+
+    console.log(
+      `${level}: ${stats.correct}/${stats.total} correct (${accuracy}%)`
+    );
+  }
+
+  console.log("\nBy Direction:");
+
+  for (const direction of Object.keys(directionStats)) {
+    const stats = directionStats[direction];
+
+    const accuracy =
+      stats.total > 0
+        ? ((stats.correct / stats.total) * 100).toFixed(2)
+        : "N/A";
+
+    console.log(
+      `${direction}: ${stats.correct}/${stats.total} correct (${accuracy}%)`
+    );
+  }
+
+  console.log("========================================\n");
+}
 
   
 async function calculatePerformance() {
@@ -106,7 +178,7 @@ if (!record) {
   }
 
   savePerformance(results);
-
+  printAccuracyBreakdown(results);
   console.log(`Performance records: ${results.length}`);
 }
 
