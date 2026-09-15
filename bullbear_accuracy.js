@@ -48,11 +48,11 @@ function calculateAccuracy() {
     record => record.status === "pending"
   );
   const bullish = completed.filter(
-    record => record.direction === "Bullish"
+    record => record.direction.includes("Bullish")
   );
 
   const bearish = completed.filter(
-    record => record.direction === "Bearish"
+    record => record.direction.includes("Bearish")
   );
 
   const neutral = completed.filter(
