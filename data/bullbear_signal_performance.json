@@ -150,6 +150,22 @@
     "direction": "Neutral",
     "confidence": "Low",
     "bullBearScore": 47,
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-14T21:50:54.107Z",
+      "actualTimestamp": "2026-09-14T21:50:00.000Z",
+      "price": 78796.53466189378,
+      "priceChangePercent": -0.6591069999241518,
+      "result": "correct"
+    }
+  },
+  {
+    "timestamp": "2026-09-14T23:32:54.560Z",
+    "coin": "BTC",
+    "priceAtSignal": 78320.94405564557,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 46,
     "status": "pending"
   }
 ]
