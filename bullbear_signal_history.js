@@ -8,7 +8,8 @@ function recordBullBearSignal({
   score,
   signal,
   price,
-  confidence
+  confidence,
+  componentScores
 }) {
   const record = {
     timestamp: new Date().toISOString(),
@@ -16,7 +17,8 @@ function recordBullBearSignal({
     score,
     signal,
     price,
-    confidence
+    confidence,
+    componentScores
   };
 
   signalHistory.push(record);
