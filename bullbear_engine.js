@@ -215,7 +215,8 @@ recordBullBearSignal({
   score: result.bullBearScore,
   signal: result.direction,
   price: result.price,
-  confidence: result.confidence
+  confidence: result.confidence,
+  componentScores: result.componentScores
 });
 
 return result;
