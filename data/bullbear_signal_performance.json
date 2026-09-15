@@ -198,6 +198,13 @@
     "direction": "Slightly Bearish",
     "confidence": "Low",
     "bullBearScore": 43,
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-15T05:29:54.622Z",
+      "actualTimestamp": "2026-09-15T05:25:00.000Z",
+      "price": 77364.2060786098,
+      "priceChangePercent": -0.2750664365869415,
+      "result": "correct"
+    }
   }
 ]
