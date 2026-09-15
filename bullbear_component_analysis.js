@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const PERFORMANCE_FILE =
-  "./data/bullbear_performance_history.json";
+  "./data/bullbear_signal_performance.json";
 
 function loadPerformance() {
   if (!fs.existsSync(PERFORMANCE_FILE)) {
