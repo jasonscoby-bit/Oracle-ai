@@ -27,6 +27,8 @@ jobs:
      
       - name: Run accuracy calculation
         run: node bullbear_accuracy.js
+      - name: Run component analysis
+        run: node bullbear_component_analysis.js
       - name: Save performance history
         run: |
           git config user.name "github-actions[bot]"
