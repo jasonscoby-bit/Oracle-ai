@@ -388,6 +388,13 @@
       "volatility": 60,
       "marketDirection": 55.172413793103445
     },
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-15T21:31:02.128Z",
+      "actualTimestamp": "2026-09-15T21:30:00.000Z",
+      "price": 75619.82699050919,
+      "priceChangePercent": -0.2148612546365763,
+      "result": "correct"
+    }
   }
 ]
