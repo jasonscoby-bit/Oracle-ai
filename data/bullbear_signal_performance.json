@@ -61,6 +61,15 @@
       "price": 76703.8084112444,
       "priceChangePercent": -0.07419221337401995,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 47.58884232,
+      "volume": 68.79542442316176,
+      "shortTerm": 49.45743242,
+      "mediumTerm": 40.91738734,
+      "longTerm": 72.03876296,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
     }
   },
   {
@@ -77,6 +86,15 @@
       "price": 77507.20393534307,
       "priceChangePercent": 0.07697011554632448,
       "result": "incorrect"
+    },
+    "componentScores": {
+      "momentum": 50.90852228,
+      "volume": 0,
+      "shortTerm": 55.13065136,
+      "mediumTerm": 43.07126126,
+      "longTerm": 72.82493217,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -93,6 +111,15 @@
       "price": 77647.39160245133,
       "priceChangePercent": 0.2040800313719596,
       "result": "incorrect"
+    },
+    "componentScores": {
+      "momentum": 51.59681904,
+      "volume": 0,
+      "shortTerm": 49.20619046,
+      "mediumTerm": 44.64306756,
+      "longTerm": 72.99792459,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -109,6 +136,15 @@
       "price": 77488.4486231385,
       "priceChangePercent": -0.1530890139509695,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 52.12112028,
+      "volume": 0,
+      "shortTerm": 50.68388828,
+      "mediumTerm": 44.78297776,
+      "longTerm": 73.07404654,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -125,6 +161,15 @@
       "price": 78552.83239725228,
       "priceChangePercent": 0.3226431325995732,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 57.92910416,
+      "volume": 0,
+      "shortTerm": 53.83866164,
+      "mediumTerm": 47.37698204,
+      "longTerm": 74.35949764,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -141,6 +186,15 @@
       "price": 78533.71007154856,
       "priceChangePercent": 0.397424850678889,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 57.054900599999996,
+      "volume": 0,
+      "shortTerm": 54.12761948,
+      "mediumTerm": 47.05904132,
+      "longTerm": 74.20600017,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -157,6 +211,15 @@
       "price": 78796.53466189378,
       "priceChangePercent": -0.6591069999241518,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 60.336367960000004,
+      "volume": 0,
+      "shortTerm": 51.3151955,
+      "mediumTerm": 50.29599666,
+      "longTerm": 75.85022184,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -173,6 +236,15 @@
       "price": 78000.28095412205,
       "priceChangePercent": -0.4094219054557014,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 57.9522074,
+      "volume": 0,
+      "shortTerm": 48.20727242,
+      "mediumTerm": 48.35039094,
+      "longTerm": 74.23096201999999,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
     }
   },
   {
@@ -189,6 +261,15 @@
       "price": 77890.82884857779,
       "priceChangePercent": -0.009379213345267458,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 54.3300472,
+      "volume": 0,
+      "shortTerm": 50.139947,
+      "mediumTerm": 46.23442986,
+      "longTerm": 73.62112795,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
     }
   },
   {
@@ -205,6 +286,15 @@
       "price": 77364.2060786098,
       "priceChangePercent": -0.2750664365869415,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 49.73610132,
+      "volume": 0,
+      "shortTerm": 48.17985218,
+      "mediumTerm": 46.84259892,
+      "longTerm": 72.97819189,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
     }
   },
   {
@@ -221,6 +311,15 @@
       "price": 76961.04573455914,
       "priceChangePercent": 0.17295475744024164,
       "result": "incorrect"
+    },
+    "componentScores": {
+      "momentum": 45.09929172,
+      "volume": 0,
+      "shortTerm": 46.6907258,
+      "mediumTerm": 46.2204781,
+      "longTerm": 71.96545006,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
     }
   },
   {
@@ -237,6 +336,15 @@
       "price": 75861.66618272378,
       "priceChangePercent": -0.3875440993429246,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 39.43517836,
+      "volume": 0,
+      "shortTerm": 43.21583708,
+      "mediumTerm": 46.06150954,
+      "longTerm": 70.89181992,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
     }
   },
   {
@@ -253,6 +361,33 @@
       "price": 75749.94922216321,
       "priceChangePercent": -1.3810707525723558,
       "result": "correct"
+    },
+    "componentScores": {
+      "momentum": 39.79950256,
+      "volume": 0,
+      "shortTerm": 53.75712806,
+      "mediumTerm": 45.53913344,
+      "longTerm": 71.78773106,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
     }
+  },
+  {
+    "timestamp": "2026-09-15T20:31:02.128Z",
+    "coin": "BTC",
+    "priceAtSignal": 75782.6545528784,
+    "direction": "Slightly Bearish",
+    "confidence": "Medium",
+    "bullBearScore": 38,
+    "componentScores": {
+      "momentum": 31.68879724,
+      "volume": 0,
+      "shortTerm": 48.74087486,
+      "mediumTerm": 42.88148992,
+      "longTerm": 70.22753667,
+      "volatility": 60,
+      "marketDirection": 55.172413793103445
+    },
+    "status": "pending"
   }
 ]
