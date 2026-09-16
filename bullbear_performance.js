@@ -37,7 +37,13 @@ function printAccuracyBreakdown(results) {
   };
 
   const directionStats = {};
-
+  const scoreStats = {
+  "0-34": { correct: 0, total: 0 },
+  "35-44": { correct: 0, total: 0 },
+  "45-54": { correct: 0, total: 0 },
+  "55-64": { correct: 0, total: 0 },
+  "65-100": { correct: 0, total: 0 }
+};
   for (const record of completed) {
     const confidence = record.confidence;
 
@@ -48,7 +54,27 @@ function printAccuracyBreakdown(results) {
         confidenceStats[confidence].correct++;
       }
     }
+const score = record.bullBearScore;
 
+let scoreBand;
+
+if (score <= 34) {
+  scoreBand = "0-34";
+} else if (score <= 44) {
+  scoreBand = "35-44";
+} else if (score <= 54) {
+  scoreBand = "45-54";
+} else if (score <= 64) {
+  scoreBand = "55-64";
+} else {
+  scoreBand = "65-100";
+}
+
+scoreStats[scoreBand].total++;
+
+if (record.oneHour.result === "correct") {
+  scoreStats[scoreBand].correct++;
+}
     const direction = record.direction;
 
     if (!directionStats[direction]) {
@@ -96,6 +122,20 @@ function printAccuracyBreakdown(results) {
     );
   }
 
+ console.log("\nBy Score Band:");
+
+for (const band of ["0-34", "35-44", "45-54", "55-64", "65-100"]) {
+  const stats = scoreStats[band];
+
+  const accuracy =
+    stats.total > 0
+      ? ((stats.correct / stats.total) * 100).toFixed(2)
+      : "N/A";
+
+  console.log(
+    `${band}: ${stats.correct}/${stats.total} correct (${accuracy}%)`
+  );
+} 
   console.log("========================================\n");
 }
 
@@ -161,7 +201,7 @@ if (!record) {
     Math.abs(priceChange) <= 0.01
       ? "correct"
       : "incorrect";
-}
+
             record.oneHour = {
           targetTimestamp: oneHourTarget.toISOString(),
           actualTimestamp: historicalPrice.timestamp,
