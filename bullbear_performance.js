@@ -200,9 +200,10 @@ if (!record) {
   result =
     Math.abs(priceChange) <= 0.01
       ? "correct"
-      : "incorrect";
+            : "incorrect";
+}
 
-            record.oneHour = {
+      record.oneHour = {
           targetTimestamp: oneHourTarget.toISOString(),
           actualTimestamp: historicalPrice.timestamp,
           price: historicalPrice.price,
