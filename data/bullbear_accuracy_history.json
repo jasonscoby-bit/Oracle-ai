@@ -1396,5 +1396,44 @@
       "correct": 0,
       "accuracy": 0
     }
+  },
+  {
+    "timestamp": "2026-09-17T05:02:41.723Z",
+    "totalSignals": 25,
+    "completed": 25,
+    "correct": 22,
+    "incorrect": 3,
+    "pending": 0,
+    "accuracy": 88,
+    "bullish": {
+      "total": 0,
+      "correct": 0,
+      "accuracy": 0
+    },
+    "bearish": {
+      "total": 10,
+      "correct": 7,
+      "accuracy": 70
+    },
+    "neutral": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 100
+    },
+    "lowConfidence": {
+      "total": 24,
+      "correct": 21,
+      "accuracy": 87.5
+    },
+    "mediumConfidence": {
+      "total": 1,
+      "correct": 1,
+      "accuracy": "100.00"
+    },
+    "highConfidence": {
+      "total": 0,
+      "correct": 0,
+      "accuracy": 0
+    }
   }
 ]
