@@ -538,6 +538,31 @@
       "volatility": 60,
       "marketDirection": 58.62068965517241
     },
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-16T21:30:56.449Z",
+      "actualTimestamp": "2026-09-16T21:30:00.000Z",
+      "price": 75999.50139514905,
+      "priceChangePercent": -0.058089542157658124,
+      "result": "correct"
+    }
+  },
+  {
+    "timestamp": "2026-09-16T23:18:55.644Z",
+    "coin": "BTC",
+    "priceAtSignal": 75819.50776786842,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 50,
+    "componentScores": {
+      "momentum": 49.88033496,
+      "volume": 44.26875712450629,
+      "shortTerm": 49.85815286,
+      "mediumTerm": 44.19323572,
+      "longTerm": 67.86695615,
+      "volatility": 60,
+      "marketDirection": 58.62068965517241
+    },
     "status": "pending"
   }
 ]
