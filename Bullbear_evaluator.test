@@ -1,0 +1,56 @@
+const assert = require("node:assert/strict");
+const test = require("node:test");
+const { evaluateDirection, validateEvaluationPrice } = require("../bullbear_evaluator");
+const { buildSummary } = require("../bullbear_accuracy");
+
+const evaluate = (direction, priceChangePercent) =>
+  evaluateDirection({ direction, priceChangePercent });
+
+test("bullish outcomes use a dead zone", () => {
+  assert.equal(evaluate("Slightly Bullish", 0.11), "correct");
+  assert.equal(evaluate("Bullish", -0.11), "incorrect");
+  assert.equal(evaluate("Strong Bullish", 0.1), "flat");
+  assert.equal(evaluate("Bullish", 0), "flat");
+});
+
+test("bearish outcomes use a dead zone", () => {
+  assert.equal(evaluate("Slightly Bearish", -0.11), "correct");
+  assert.equal(evaluate("Bearish", 0.11), "incorrect");
+  assert.equal(evaluate("Strong Bearish", -0.1), "flat");
+});
+
+test("neutral threshold is inclusive", () => {
+  assert.equal(evaluate("Neutral", 0.25), "correct");
+  assert.equal(evaluate("Neutral", -0.25), "correct");
+  assert.equal(evaluate("Neutral", 0.251), "incorrect");
+});
+
+test("unsupported and invalid inputs fail closed", () => {
+  assert.throws(() => evaluate("Unknown", 1), /Unsupported/);
+  assert.throws(() => evaluate("Bullish", "bad"), /finite/);
+});
+
+test("quote timestamp skew is enforced", () => {
+  const targetTimestamp = "2026-09-19T12:00:00.000Z";
+  assert.deepEqual(validateEvaluationPrice({
+    targetTimestamp,
+    actualTimestamp: "2026-09-19T12:05:00.000Z"
+  }), { valid: true, skewSeconds: 300 });
+  assert.deepEqual(validateEvaluationPrice({
+    targetTimestamp,
+    actualTimestamp: "2026-09-19T12:05:01.000Z"
+  }), { valid: false, skewSeconds: 301 });
+});
+
+test("accuracy separates directional and neutral outcomes", () => {
+  const summary = buildSummary([
+    { status: "complete", direction: "Neutral", confidence: "Low", oneHour: { result: "correct" } },
+    { status: "complete", direction: "Slightly Bullish", confidence: "Medium", oneHour: { result: "incorrect" } },
+    { status: "complete", direction: "Slightly Bearish", confidence: "Low", oneHour: { result: "flat" } }
+  ]);
+  assert.equal(summary.overall.accuracy, 50);
+  assert.equal(summary.directional.accuracy, 0);
+  assert.equal(summary.neutral.accuracy, 100);
+  assert.equal(summary.excludedFlat, 1);
+  assert.equal(summary.byConfidence.High.accuracy, null);
+});
