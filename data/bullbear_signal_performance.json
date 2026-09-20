@@ -1063,6 +1063,85 @@
       "volatility": 55,
       "marketDirection": 55.172413793103445
     },
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-19T22:50:14.399Z",
+      "actualTimestamp": "2026-09-19T22:50:00.000Z",
+      "skewSeconds": 14.399,
+      "price": 81189.11286204879,
+      "priceChangePercent": 0.17766319841364442,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
+  },
+  {
+    "id": "BTC:2026-09-19T23:42:11.440Z",
+    "timestamp": "2026-09-19T23:42:11.440Z",
+    "coin": "BTC",
+    "priceAtSignal": 81265.93914710592,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 49,
+    "componentScores": {
+      "momentum": 52.045551520000004,
+      "volume": 16.141192470963617,
+      "shortTerm": 50.5670414,
+      "mediumTerm": 60.45129964,
+      "longTerm": 61.15478312,
+      "volatility": 55,
+      "marketDirection": 55.172413793103445
+    },
+    "eligibleAt": "2026-09-20T00:42:11.440Z",
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-20T00:42:11.440Z",
+      "actualTimestamp": "2026-09-20T00:40:00.000Z",
+      "skewSeconds": 131.44,
+      "price": 81248.85725339658,
+      "priceChangePercent": -0.0210197456506611,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
+  },
+  {
+    "id": "BTC:2026-09-20T01:53:25.255Z",
+    "timestamp": "2026-09-20T01:53:25.255Z",
+    "coin": "BTC",
+    "priceAtSignal": 81031.65908629453,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 53,
+    "componentScores": {
+      "momentum": 48.38092832,
+      "volume": 72.62736617541132,
+      "shortTerm": 48.30611006,
+      "mediumTerm": 59.723721420000004,
+      "longTerm": 57.26731503,
+      "volatility": 30,
+      "marketDirection": 55.172413793103445
+    },
+    "eligibleAt": "2026-09-20T02:53:25.255Z",
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-09-20T02:53:25.255Z",
+      "actualTimestamp": "2026-09-20T02:50:00.000Z",
+      "skewSeconds": 205.255,
+      "price": 80541.49044832542,
+      "priceChangePercent": -0.604910035776393,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   }
 ]
