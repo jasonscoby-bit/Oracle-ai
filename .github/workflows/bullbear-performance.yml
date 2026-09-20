@@ -39,8 +39,10 @@ jobs:
         run: node bullbear_accuracy.js
       - name: Run component analysis
         run: node bullbear_component_analysis.js
+
+      - name: Run score-band analysis
+        run: node bullbear_score_analysis.js
       - name: Save performance history
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/bullbear_signal_performance.json data/bullbear_accuracy_history.json
