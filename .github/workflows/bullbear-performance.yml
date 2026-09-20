@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
+
 permissions:
   contents: write
 
@@ -17,6 +18,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+
       - name: Verify BullBear code
         run: |
           echo "=== COMMIT ==="
@@ -25,6 +27,7 @@ jobs:
           sed -n '1,12p' bullbear_performance.js
           echo "=== EVALUATOR REFERENCES ==="
           grep -n "bullbear_evaluator" bullbear_performance.js || echo "No bullbear_evaluator reference found"
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -34,15 +37,17 @@ jobs:
         env:
           CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
         run: node bullbear_performance.js
-     
+
       - name: Run accuracy calculation
         run: node bullbear_accuracy.js
+
       - name: Run component analysis
         run: node bullbear_component_analysis.js
 
       - name: Run score-band analysis
         run: node bullbear_score_analysis.js
-     - name: Save performance history
+
+      - name: Save performance history
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
