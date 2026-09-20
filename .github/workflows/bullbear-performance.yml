@@ -17,7 +17,14 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-
+      - name: Verify BullBear code
+        run: |
+          echo "=== COMMIT ==="
+          git rev-parse HEAD
+          echo "=== PERFORMANCE FILE ==="
+          sed -n '1,12p' bullbear_performance.js
+          echo "=== EVALUATOR REFERENCES ==="
+          grep -n "bullbear_evaluator" bullbear_performance.js || echo "No bullbear_evaluator reference found"
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
