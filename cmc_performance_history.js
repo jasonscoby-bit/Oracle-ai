@@ -46,7 +46,7 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
     return null;
   }
 
-  const quote = asset.quotes.reduce(
+  const quote = asset.quotes.reduce((closest, current) => {
   const closestDistance = Math.abs(
     new Date(closest.timestamp).getTime() - target.getTime()
   );
