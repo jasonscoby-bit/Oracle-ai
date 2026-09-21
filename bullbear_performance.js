@@ -75,7 +75,10 @@ async function calculatePerformance() {
     }
 
     if (record.status === "pending" && now >= target) {
-      const historical = await getHistoricalPrice(target.toISOString());
+      const historical = await getHistoricalPrice(
+  target.toISOString(),
+  record.coin
+);
       if (!historical) {
         record.status = "unavailable";
         record.evaluationError = "No historical price returned";
