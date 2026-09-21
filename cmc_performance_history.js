@@ -1,7 +1,7 @@
 const CMC_HISTORY_URL =
   "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical";
 
-async function getHistoricalPrice(timestamp) {
+async function getHistoricalPrice(timestamp, coin) {
   const apiKey = process.env.CMC_API_KEY;
 
   if (!apiKey) {
@@ -13,7 +13,7 @@ async function getHistoricalPrice(timestamp) {
 const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const params = new URLSearchParams({
-    id: "1",
+    symbol: coin,
     time_start: start.toISOString(),
     time_end: end.toISOString(),
     interval: "1h",
@@ -40,13 +40,13 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const data = await response.json();
 
-  const bitcoin = data.data?.["1"];
+  const asset = data.data?.[coin];
 
-  if (!bitcoin || !bitcoin.quotes || bitcoin.quotes.length === 0) {
+  if (!asset || !asset.quotes || asset.quotes.length === 0) {
     return null;
   }
 
-  const quote = bitcoin.quotes.reduce((closest, current) => {
+  const quote = asset.quotes.reduce(
   const closestDistance = Math.abs(
     new Date(closest.timestamp).getTime() - target.getTime()
   );
