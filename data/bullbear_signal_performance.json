@@ -1404,5 +1404,26 @@
     "eligibleAt": "2026-09-21T15:36:17.345Z",
     "status": "unavailable",
     "evaluationError": "No historical price returned"
+  },
+  {
+    "id": "BTC:2026-09-21T19:47:09.760Z",
+    "timestamp": "2026-09-21T19:47:09.760Z",
+    "coin": "BTC",
+    "priceAtSignal": 86576.61393218067,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 54,
+    "componentScores": {
+      "momentum": 76.40892688,
+      "volume": 14.529543535414625,
+      "shortTerm": 54.51681212,
+      "mediumTerm": 68.80320345999999,
+      "longTerm": 61.82821022,
+      "volatility": 30,
+      "marketDirection": 55.172413793103445
+    },
+    "eligibleAt": "2026-09-21T20:47:09.760Z",
+    "status": "unavailable",
+    "evaluationError": "No historical price returned"
   }
 ]
