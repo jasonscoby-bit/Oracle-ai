@@ -44,12 +44,13 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   if (!asset || !asset.quotes || asset.quotes.length === 0) {
   console.log("CMC historical data unavailable", {
-    coin,
-    target: target.toISOString(),
-    dataKeys: Object.keys(data.data || {}),
-    assetFound: !!asset,
-    quoteCount: asset?.quotes?.length || 0
-  });
+  coin,
+  target: target.toISOString(),
+  dataKeys: Object.keys(data.data || {}),
+  assetFound: !!asset,
+  quoteCount: asset?.quotes?.length || 0,
+  cmcStatus: data.status
+});
 
   return null;
 }
