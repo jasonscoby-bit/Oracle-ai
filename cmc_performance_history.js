@@ -15,7 +15,7 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
   const params = new URLSearchParams({
     symbol: coin,
     time_start: start.toISOString(),
-    time_end: end.toISOString(),
+    time_end: target.toISOString(),
     interval: "5m",
     convert: "USD"
   });
