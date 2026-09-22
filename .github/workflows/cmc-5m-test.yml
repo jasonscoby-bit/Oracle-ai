@@ -13,6 +13,6 @@ jobs:
           CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
         run: |
           curl -sS \
-            "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical?symbol=BTC&time_start=2026-09-22T17:00:00.000Z&time_end=2026-09-22T18:00:00.000Z&interval=5m&convert=USD" \
+            "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical?symbol=BTC&time_start=2026-09-22T16:00:00.000Z&time_end=2026-09-22T18:00:00.000Z&interval=5m&convert=USD" \
             -H "X-CMC_PRO_API_KEY: $CMC_API_KEY" \
             -H "Accept: application/json"
