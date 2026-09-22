@@ -1570,6 +1570,7 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T21:32:52.206Z",
-    "status": "pending"
+    "status": "unavailable",
+    "evaluationError": "No historical price returned"
   }
 ]
