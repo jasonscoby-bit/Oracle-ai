@@ -43,8 +43,16 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
   const asset = data.data?.[coin];
 
   if (!asset || !asset.quotes || asset.quotes.length === 0) {
-    return null;
-  }
+  console.log("CMC historical data unavailable", {
+    coin,
+    target: target.toISOString(),
+    dataKeys: Object.keys(data.data || {}),
+    assetFound: !!asset,
+    quoteCount: asset?.quotes?.length || 0
+  });
+
+  return null;
+}
 
   const quote = asset.quotes.reduce((closest, current) => {
   const closestDistance = Math.abs(
