@@ -16,7 +16,7 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
     symbol: coin,
     time_start: start.toISOString(),
     time_end: end.toISOString(),
-    interval: "5m",
+    interval: "1h",
     convert: "USD"
   });
 
