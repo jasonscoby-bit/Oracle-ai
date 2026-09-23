@@ -1,15 +1,36 @@
-const { getHistoricalPrice } = require("./cmc_performance_history");
+const apiKey = process.env.CMC_API_KEY;
 
 async function runProbe() {
   try {
-    const result = await getHistoricalPrice(
-      "2026-09-18T02:45:55.128Z",
-      "BTC"
+    const params = new URLSearchParams({
+      symbol: "BTC",
+      count: "1",
+      interval: "1h",
+      convert: "USD"
+    });
+
+    const response = await fetch(
+      `https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical?${params}`,
+      {
+        headers: {
+          "X-CMC_PRO_API_KEY": apiKey,
+          "Accept": "application/json"
+        }
+      }
     );
 
-    console.log("CMC PROBE RESULT:", result);
+    const data = await response.json();
+
+    console.log("CMC COUNT PROBE", {
+      httpStatus: response.status,
+      params: params.toString(),
+      quoteCount: data.data?.BTC?.quotes?.length ?? 0,
+      status: data.status
+    });
+
+    console.log("CMC COUNT RESULT:", data.data?.BTC?.quotes ?? []);
   } catch (error) {
-    console.error("CMC PROBE ERROR:", error);
+    console.error("CMC COUNT PROBE ERROR:", error);
     process.exit(1);
   }
 }
