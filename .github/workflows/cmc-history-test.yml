@@ -18,5 +18,5 @@ jobs:
 
       - name: Test Historical CMC Data
         env:
-          CMC_API_KEY: ${{ secrets.CMC_API_
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
         run: node cmc_history_probe.js
