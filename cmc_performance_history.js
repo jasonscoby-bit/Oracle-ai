@@ -3,7 +3,6 @@ const CMC_HISTORY_URL =
 
 async function getHistoricalPrice(timestamp, coin) {
   const apiKey = process.env.CMC_API_KEY;
-
   if (!apiKey) {
     throw new Error("CMC_API_KEY is not configured");
   }
