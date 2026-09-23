@@ -40,6 +40,13 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const data = await response.json();
 
+  console.log("CMC HISTORY DEBUG", {
+  httpStatus: response.status,
+  target: target.toISOString(),
+  params: params.toString(),
+  quoteCount: data.data?.[coin]?.quotes?.length ?? 0
+});
+
   const asset = data.data?.[coin];
 
   if (!asset || !asset.quotes || asset.quotes.length === 0) {
