@@ -20,7 +20,7 @@ jobs:
         env:
           CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
         run: |
-          node -e "
+          Add CMC historical price probe
           const { getHistoricalBTC } = require('./cmc_history.js');
 
           getHistoricalBTC(30)
