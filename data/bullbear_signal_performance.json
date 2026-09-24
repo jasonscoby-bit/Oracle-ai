@@ -1360,8 +1360,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-21T02:54:14.774Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-21T02:54:14.774Z",
+      "actualTimestamp": "2026-09-21T02:50:00.000Z",
+      "skewSeconds": 254.774,
+      "price": 81222.79382339057,
+      "priceChangePercent": 0.2594623057774376,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-21T07:19:27.566Z",
@@ -1381,8 +1394,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-21T08:19:27.566Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-21T08:19:27.566Z",
+      "actualTimestamp": "2026-09-21T08:15:00.000Z",
+      "skewSeconds": 267.566,
+      "price": 81866.7290587942,
+      "priceChangePercent": 0.3794740782998842,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-21T14:36:17.345Z",
@@ -1402,8 +1428,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-21T15:36:17.345Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-21T15:36:17.345Z",
+      "actualTimestamp": "2026-09-21T15:35:00.000Z",
+      "skewSeconds": 77.345,
+      "price": 85869.9964254706,
+      "priceChangePercent": -0.03507334266260515,
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-21T19:47:09.760Z",
@@ -1423,8 +1462,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-21T20:47:09.760Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-21T20:47:09.760Z",
+      "actualTimestamp": "2026-09-21T20:45:00.000Z",
+      "skewSeconds": 129.76,
+      "price": 86919.0695223649,
+      "priceChangePercent": 0.3955520718937862,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-21T22:53:11.899Z",
@@ -1444,8 +1496,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-21T23:53:11.899Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-21T23:53:11.899Z",
+      "actualTimestamp": "2026-09-21T23:50:00.000Z",
+      "skewSeconds": 191.899,
+      "price": 86477.22879684722,
+      "priceChangePercent": 0.13903137503954116,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T01:19:16.818Z",
@@ -1465,8 +1530,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T02:19:16.818Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-22T02:19:16.818Z",
+      "actualTimestamp": "2026-09-22T02:15:00.000Z",
+      "skewSeconds": 256.818,
+      "price": 85597.35878664047,
+      "priceChangePercent": -0.13971312911396352,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T05:00:07.611Z",
@@ -1486,8 +1564,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T06:00:07.611Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-22T06:00:07.611Z",
+      "actualTimestamp": "2026-09-22T06:00:00.000Z",
+      "skewSeconds": 7.611,
+      "price": 85388.57682598439,
+      "priceChangePercent": -0.03898349700439896,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T06:55:24.102Z",
@@ -1507,8 +1598,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T07:55:24.102Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-22T07:55:24.102Z",
+      "actualTimestamp": "2026-09-22T07:55:00.000Z",
+      "skewSeconds": 24.102,
+      "price": 85308.53186344703,
+      "priceChangePercent": -0.20061390466236587,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T12:10:31.759Z",
@@ -1528,8 +1632,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T13:10:31.759Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-22T13:10:31.759Z",
+      "actualTimestamp": "2026-09-22T13:10:00.000Z",
+      "skewSeconds": 31.759,
+      "price": 86121.04988854905,
+      "priceChangePercent": 0.17787263127700786,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T17:23:32.803Z",
@@ -1549,8 +1666,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T18:23:32.803Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-22T18:23:32.803Z",
+      "actualTimestamp": "2026-09-22T18:20:00.000Z",
+      "skewSeconds": 212.803,
+      "price": 86595.49315756481,
+      "priceChangePercent": 0.22091452102575918,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T20:32:52.206Z",
@@ -1570,8 +1700,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-22T21:32:52.206Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-22T21:32:52.206Z",
+      "actualTimestamp": "2026-09-22T21:30:00.000Z",
+      "skewSeconds": 172.206,
+      "price": 86243.68496497584,
+      "priceChangePercent": -0.13827462520201525,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-22T23:19:43.567Z",
@@ -1591,8 +1734,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-23T00:19:43.567Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-23T00:19:43.567Z",
+      "actualTimestamp": "2026-09-23T00:15:00.000Z",
+      "skewSeconds": 283.567,
+      "price": 86354.4136551367,
+      "priceChangePercent": -0.0668954631465267,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-23T01:59:58.463Z",
@@ -1612,8 +1768,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-23T02:59:58.463Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-23T02:59:58.463Z",
+      "actualTimestamp": "2026-09-23T02:55:00.000Z",
+      "skewSeconds": 298.463,
+      "price": 86459.18284930103,
+      "priceChangePercent": 0.23158657528447976,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-23T07:25:31.298Z",
@@ -1633,8 +1802,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-23T08:25:31.298Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-23T08:25:31.298Z",
+      "actualTimestamp": "2026-09-23T08:25:00.000Z",
+      "skewSeconds": 31.298,
+      "price": 86213.61327280296,
+      "priceChangePercent": -0.15071054646173776,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-23T13:05:06.677Z",
@@ -1654,8 +1836,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-23T14:05:06.677Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-23T14:05:06.677Z",
+      "actualTimestamp": "2026-09-23T14:05:00.000Z",
+      "skewSeconds": 6.677,
+      "price": 85725.93092865332,
+      "priceChangePercent": 0.3504660804351779,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-23T18:00:49.993Z",
@@ -1675,8 +1870,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-23T19:00:49.993Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-23T19:00:49.993Z",
+      "actualTimestamp": "2026-09-23T19:00:00.000Z",
+      "skewSeconds": 49.993,
+      "price": 84307.93473031142,
+      "priceChangePercent": 0.022490862563565295,
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-23T21:51:16.981Z",
@@ -1696,8 +1904,21 @@
       "marketDirection": 55.172413793103445
     },
     "eligibleAt": "2026-09-23T22:51:16.981Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-23T22:51:16.981Z",
+      "actualTimestamp": "2026-09-23T22:50:00.000Z",
+      "skewSeconds": 76.981,
+      "price": 84589.28022285215,
+      "priceChangePercent": 0.16724279264934344,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   },
   {
     "id": "BTC:2026-09-24T00:03:28.203Z",
@@ -1717,7 +1938,20 @@
       "marketDirection": 51.724137931034484
     },
     "eligibleAt": "2026-09-24T01:03:28.203Z",
-    "status": "unavailable",
-    "evaluationError": "No historical price returned"
+    "status": "complete",
+    "evaluationError": "No historical price returned",
+    "oneHour": {
+      "targetTimestamp": "2026-09-24T01:03:28.203Z",
+      "actualTimestamp": "2026-09-24T01:00:00.000Z",
+      "skewSeconds": 208.203,
+      "price": 84304.44932293818,
+      "priceChangePercent": -0.14866432306529265,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   }
 ]
