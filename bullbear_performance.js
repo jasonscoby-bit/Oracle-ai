@@ -74,7 +74,7 @@ async function calculatePerformance() {
       record.componentScores = signal.componentScores;
     }
 
-    if ((record.status === "pending" || record.status === "unavailable") && now >= target) {
+    if (record.status === "pending" && now >= target) {
       const historical = await getHistoricalPrice(
   target.toISOString(),
   record.coin
