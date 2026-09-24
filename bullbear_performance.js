@@ -73,7 +73,9 @@ async function calculatePerformance() {
     if (!record.componentScores && signal.componentScores) {
       record.componentScores = signal.componentScores;
     }
-
+    if (record.status === "complete" && record.evaluationError) {
+      delete record.evaluationError;
+    }
     if ((record.status === "pending" || record.status === "unavailable") && now >= target) {
       const historical = await getHistoricalPrice(
   target.toISOString(),
