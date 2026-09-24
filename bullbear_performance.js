@@ -107,6 +107,7 @@ async function calculatePerformance() {
             result: evaluateDirection({ direction: signal.direction, priceChangePercent }),
             policy: { ...DEFAULT_EVALUATION_CONFIG }
           };
+          delete record.evaluationError;
           record.status = "complete";
         }
       }
