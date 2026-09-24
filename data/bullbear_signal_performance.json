@@ -1361,7 +1361,6 @@
     },
     "eligibleAt": "2026-09-21T02:54:14.774Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-21T02:54:14.774Z",
       "actualTimestamp": "2026-09-21T02:50:00.000Z",
@@ -1395,7 +1394,6 @@
     },
     "eligibleAt": "2026-09-21T08:19:27.566Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-21T08:19:27.566Z",
       "actualTimestamp": "2026-09-21T08:15:00.000Z",
@@ -1429,7 +1427,6 @@
     },
     "eligibleAt": "2026-09-21T15:36:17.345Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-21T15:36:17.345Z",
       "actualTimestamp": "2026-09-21T15:35:00.000Z",
@@ -1463,7 +1460,6 @@
     },
     "eligibleAt": "2026-09-21T20:47:09.760Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-21T20:47:09.760Z",
       "actualTimestamp": "2026-09-21T20:45:00.000Z",
@@ -1497,7 +1493,6 @@
     },
     "eligibleAt": "2026-09-21T23:53:11.899Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-21T23:53:11.899Z",
       "actualTimestamp": "2026-09-21T23:50:00.000Z",
@@ -1531,7 +1526,6 @@
     },
     "eligibleAt": "2026-09-22T02:19:16.818Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-22T02:19:16.818Z",
       "actualTimestamp": "2026-09-22T02:15:00.000Z",
@@ -1565,7 +1559,6 @@
     },
     "eligibleAt": "2026-09-22T06:00:07.611Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-22T06:00:07.611Z",
       "actualTimestamp": "2026-09-22T06:00:00.000Z",
@@ -1599,7 +1592,6 @@
     },
     "eligibleAt": "2026-09-22T07:55:24.102Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-22T07:55:24.102Z",
       "actualTimestamp": "2026-09-22T07:55:00.000Z",
@@ -1633,7 +1625,6 @@
     },
     "eligibleAt": "2026-09-22T13:10:31.759Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-22T13:10:31.759Z",
       "actualTimestamp": "2026-09-22T13:10:00.000Z",
@@ -1667,7 +1658,6 @@
     },
     "eligibleAt": "2026-09-22T18:23:32.803Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-22T18:23:32.803Z",
       "actualTimestamp": "2026-09-22T18:20:00.000Z",
@@ -1701,7 +1691,6 @@
     },
     "eligibleAt": "2026-09-22T21:32:52.206Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-22T21:32:52.206Z",
       "actualTimestamp": "2026-09-22T21:30:00.000Z",
@@ -1735,7 +1724,6 @@
     },
     "eligibleAt": "2026-09-23T00:19:43.567Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-23T00:19:43.567Z",
       "actualTimestamp": "2026-09-23T00:15:00.000Z",
@@ -1769,7 +1757,6 @@
     },
     "eligibleAt": "2026-09-23T02:59:58.463Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-23T02:59:58.463Z",
       "actualTimestamp": "2026-09-23T02:55:00.000Z",
@@ -1803,7 +1790,6 @@
     },
     "eligibleAt": "2026-09-23T08:25:31.298Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-23T08:25:31.298Z",
       "actualTimestamp": "2026-09-23T08:25:00.000Z",
@@ -1837,7 +1823,6 @@
     },
     "eligibleAt": "2026-09-23T14:05:06.677Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-23T14:05:06.677Z",
       "actualTimestamp": "2026-09-23T14:05:00.000Z",
@@ -1871,7 +1856,6 @@
     },
     "eligibleAt": "2026-09-23T19:00:49.993Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-23T19:00:49.993Z",
       "actualTimestamp": "2026-09-23T19:00:00.000Z",
@@ -1905,7 +1889,6 @@
     },
     "eligibleAt": "2026-09-23T22:51:16.981Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-23T22:51:16.981Z",
       "actualTimestamp": "2026-09-23T22:50:00.000Z",
@@ -1939,7 +1922,6 @@
     },
     "eligibleAt": "2026-09-24T01:03:28.203Z",
     "status": "complete",
-    "evaluationError": "No historical price returned",
     "oneHour": {
       "targetTimestamp": "2026-09-24T01:03:28.203Z",
       "actualTimestamp": "2026-09-24T01:00:00.000Z",
