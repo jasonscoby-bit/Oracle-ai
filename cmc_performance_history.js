@@ -12,7 +12,7 @@ async function getHistoricalPrice(timestamp, coin) {
 const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const params = new URLSearchParams({
-    symbol: coin,
+    id: "1",
     time_start: start.toISOString(),
     time_end: end.toISOString(),
     interval: "1h",
@@ -39,7 +39,7 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const data = await response.json();
 
-  const asset = data.data?.[coin];
+  const asset = data.data?.["1"];
 
   if (!asset || !asset.quotes || asset.quotes.length === 0) {
 
