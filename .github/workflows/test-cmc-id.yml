@@ -1,0 +1,17 @@
+name: Test CMC ID
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-cmc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run CMC ID test
+        env:
+          CMC_API_KEY: ${{ secrets.CMC_API_KEY }}
+        run: node test_cmc_id.js
