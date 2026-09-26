@@ -2,7 +2,7 @@ const apiKey = process.env.CMC_API_KEY;
 
 async function runProbe() {
   try {
-    const target = new Date("2026-09-19T22:50:14.399Z");
+    const target = new Date("2026-09-19T22:25:14.399Z");
 
     const start = new Date(target.getTime() - 2 * 60 * 60 * 1000);
     const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
