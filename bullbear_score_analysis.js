@@ -49,7 +49,40 @@ for (const band of bands) {
     console.log(`  Incorrect: ${incorrect}`);
   }
 }
+console.log("");
+console.log("===== DIRECTIONAL SCORE-BAND ANALYSIS =====");
 
+const directionalScored = scored.filter(record =>
+  ["Slightly Bullish", "Slightly Bearish"].includes(record.direction)
+);
+
+console.log(`Directional scored signals: ${directionalScored.length}`);
+console.log("");
+
+for (const band of bands) {
+  const matches = directionalScored.filter(record => {
+    const score = Number(record.bullBearScore);
+    return score >= band.min && score <= band.max;
+  });
+
+  const correct = matches.filter(
+    record => record.oneHour.result === "correct"
+  ).length;
+
+  const incorrect = matches.length - correct;
+
+  const accuracy = matches.length
+    ? ((correct / matches.length) * 100).toFixed(2)
+    : "N/A";
+
+  console.log(
+    `${band.name}: ${correct}/${matches.length} correct (${accuracy}%)`
+  );
+
+  if (matches.length > 0) {
+    console.log(`  Incorrect: ${incorrect}`);
+  }
+}
 const correctScores = scored
   .filter(record => record.oneHour.result === "correct")
   .map(record => Number(record.bullBearScore));
