@@ -83,6 +83,30 @@ for (const band of bands) {
     console.log(`  Incorrect: ${incorrect}`);
   }
 }
+console.log("");
+console.log("===== BULLISH VS BEARISH ANALYSIS =====");
+
+for (const direction of ["Slightly Bullish", "Slightly Bearish"]) {
+  const matches = directionalScored.filter(
+    record => record.direction === direction
+  );
+
+  const correct = matches.filter(
+    record => record.oneHour.result === "correct"
+  ).length;
+
+  const incorrect = matches.length - correct;
+
+  const accuracy = matches.length
+    ? ((correct / matches.length) * 100).toFixed(2)
+    : "N/A";
+
+  console.log(
+    `${direction}: ${correct}/${matches.length} correct (${accuracy}%)`
+  );
+
+  console.log(`  Incorrect: ${incorrect}`);
+}
 const correctScores = scored
   .filter(record => record.oneHour.result === "correct")
   .map(record => Number(record.bullBearScore));
