@@ -107,6 +107,42 @@ for (const direction of ["Slightly Bullish", "Slightly Bearish"]) {
 
   console.log(`  Incorrect: ${incorrect}`);
 }
+console.log("");
+console.log("===== DIRECTIONAL SCORE-BAND BY DIRECTION =====");
+
+for (const direction of ["Slightly Bullish", "Slightly Bearish"]) {
+  console.log("");
+  console.log(`--- ${direction} ---`);
+
+  const directionRecords = directionalScored.filter(
+    record => record.direction === direction
+  );
+
+  for (const band of bands) {
+    const matches = directionRecords.filter(record => {
+      const score = Number(record.bullBearScore);
+      return score >= band.min && score <= band.max;
+    });
+
+    const correct = matches.filter(
+      record => record.oneHour.result === "correct"
+    ).length;
+
+    const incorrect = matches.length - correct;
+
+    const accuracy = matches.length
+      ? ((correct / matches.length) * 100).toFixed(2)
+      : "N/A";
+
+    console.log(
+      `${band.name}: ${correct}/${matches.length} correct (${accuracy}%)`
+    );
+
+    if (matches.length > 0) {
+      console.log(`  Incorrect: ${incorrect}`);
+    }
+  }
+}
 const correctScores = scored
   .filter(record => record.oneHour.result === "correct")
   .map(record => Number(record.bullBearScore));
