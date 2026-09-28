@@ -72,7 +72,6 @@ function analyzeComponents() {
       `Incorrect: ${average(incorrectValues).toFixed(2)}`
     );
   }
-}
 console.log("");
 console.log("Directional Component Analysis");
 console.log("==============================");
@@ -109,5 +108,6 @@ for (const component of components) {
     `Correct: ${average(correctValues).toFixed(2)} ` +
     `Incorrect: ${average(incorrectValues).toFixed(2)}`
   );
+  }
 analyzeComponents();
 
