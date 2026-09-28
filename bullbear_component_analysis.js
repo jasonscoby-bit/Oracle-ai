@@ -73,5 +73,41 @@ function analyzeComponents() {
     );
   }
 }
+console.log("");
+console.log("Directional Component Analysis");
+console.log("==============================");
 
+const directional = completed.filter(record =>
+  ["Slightly Bullish", "Slightly Bearish"].includes(record.direction) &&
+  ["correct", "incorrect"].includes(record.oneHour.result)
+);
+
+const directionalCorrect = directional.filter(
+  record => record.oneHour.result === "correct"
+);
+
+const directionalIncorrect = directional.filter(
+  record => record.oneHour.result === "incorrect"
+);
+
+console.log(`Directional signals: ${directional.length}`);
+console.log(`Correct: ${directionalCorrect.length}`);
+console.log(`Incorrect: ${directionalIncorrect.length}`);
+console.log("");
+
+for (const component of components) {
+  const correctValues = directionalCorrect
+    .map(record => record.componentScores?.[component])
+    .filter(value => typeof value === "number");
+
+  const incorrectValues = directionalIncorrect
+    .map(record => record.componentScores?.[component])
+    .filter(value => typeof value === "number");
+
+  console.log(
+    `${component.padEnd(18)}` +
+    `Correct: ${average(correctValues).toFixed(2)} ` +
+    `Incorrect: ${average(incorrectValues).toFixed(2)}`
+  );
+}
 analyzeComponents();
