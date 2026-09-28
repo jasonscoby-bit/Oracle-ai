@@ -109,5 +109,5 @@ for (const component of components) {
     `Correct: ${average(correctValues).toFixed(2)} ` +
     `Incorrect: ${average(incorrectValues).toFixed(2)}`
   );
-}
 analyzeComponents();
+
