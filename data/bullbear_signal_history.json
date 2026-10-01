@@ -5587,5 +5587,57 @@
       }
     },
     "lastUpdated": "2026-10-01T02:38:59.000Z"
+  },
+  {
+    "timestamp": "2026-10-01T09:29:41.475Z",
+    "coin": "BTC",
+    "name": "Bitcoin",
+    "price": 83672.49198549814,
+    "bullBearScore": 51,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "componentScores": {
+      "momentum": 51.345003,
+      "volume": 42.452416935939716,
+      "shortTerm": 51.90907508,
+      "mediumTerm": 50.7893005,
+      "longTerm": 57.37315837,
+      "volatility": 60,
+      "marketDirection": 51.724137931034484
+    },
+    "factors": [
+      "Positive 24h price momentum",
+      "Positive short-term trend",
+      "Positive 7-day trend",
+      "Positive 30-day trend",
+      "Normal trading volume",
+      "Moderate market volatility"
+    ],
+    "marketCap": 1681056422283.8726,
+    "volume24h": 39534440863.81333,
+    "change1h": 0.31817918,
+    "change24h": 0.33625075,
+    "change7d": 0.39465025,
+    "change30d": 7.37315837,
+    "historicalVolumeRatio": 0.9245241693593972,
+    "dailyVolatility": 0.0225041746575161,
+    "annualizedVolatility": 0.42994165314707095,
+    "positiveDays": 15,
+    "negativeDays": 14,
+    "positiveRatio": 0.5172413793103449,
+    "calibration": {
+      "volatility": {
+        "volatilityPercentile": 4.166666666666666,
+        "volatilityScore": 60
+      },
+      "volume": {
+        "volumePercentile": 37.93103448275862,
+        "volumeScore": 45
+      },
+      "trend": {
+        "trendScore": 51.724137931034484
+      }
+    },
+    "lastUpdated": "2026-10-01T09:27:59.000Z"
   }
 ]
