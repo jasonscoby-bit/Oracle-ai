@@ -164,3 +164,23 @@ console.log(
 console.log(
   `Average score when incorrect: ${average(incorrectScores)?.toFixed(2) ?? "N/A"}`
 );
+console.log("");
+console.log("===== 55-59 SCORE BAND DETAIL =====");
+
+const band55to59 = scored.filter(record => {
+  const score = Number(record.bullBearScore);
+  return score >= 55 && score <= 59;
+});
+
+for (const record of band55to59) {
+  console.log(
+    JSON.stringify({
+      asset: record.asset ?? record.coin ?? record.symbol,
+      score: record.bullBearScore,
+      direction: record.direction,
+      confidence: record.confidence,
+      result: record.oneHour?.result,
+      componentScores: record.componentScores
+    })
+  );
+}
