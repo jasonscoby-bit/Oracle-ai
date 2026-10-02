@@ -3340,6 +3340,52 @@
       "marketDirection": 51.724137931034484
     },
     "eligibleAt": "2026-10-02T08:37:15.418Z",
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-10-02T08:37:15.418Z",
+      "actualTimestamp": "2026-10-02T08:35:00.000Z",
+      "skewSeconds": 135.418,
+      "price": 86285.87827852627,
+      "priceChangePercent": 0.5068724964682959,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
+  },
+  {
+    "id": "BTC:2026-10-02T14:12:41.210Z",
+    "timestamp": "2026-10-02T14:12:41.210Z",
+    "coin": "BTC",
+    "priceAtSignal": 86422.6141072463,
+    "direction": "Slightly Bullish",
+    "confidence": "Low",
+    "bullBearScore": 58,
+    "componentScores": {
+      "momentum": 61.85460808,
+      "volume": 69.03598695356072,
+      "shortTerm": 47.74388024,
+      "mediumTerm": 56.74619192,
+      "longTerm": 61.949348130000004,
+      "volatility": 60,
+      "marketDirection": 51.724137931034484
+    },
+    "eligibleAt": "2026-10-02T15:12:41.210Z",
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-10-02T15:12:41.210Z",
+      "actualTimestamp": "2026-10-02T15:10:00.000Z",
+      "skewSeconds": 161.21,
+      "price": 85509.79695090663,
+      "priceChangePercent": -1.0562248848512188,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   }
 ]
