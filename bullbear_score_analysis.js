@@ -231,3 +231,52 @@ for (const component of componentNames) {
     `difference=${difference?.toFixed(2) ?? "N/A"}`
   );
 }
+console.log("\n===== 55–59 COMPONENT ANALYSIS =====");
+
+const band55to59 = scored.filter(
+  record =>
+    Number.isFinite(Number(record.bullBearScore)) &&
+    Number(record.bullBearScore) >= 55 &&
+    Number(record.bullBearScore) <= 59 &&
+    (record.oneHour?.result === "correct" ||
+      record.oneHour?.result === "incorrect")
+);
+
+console.log(`55–59 signals analyzed: ${band55to59.length}`);
+
+for (const component of componentNames) {
+  const correctValues = band55to59
+    .filter(
+      record =>
+        record.oneHour?.result === "correct" &&
+        Number.isFinite(Number(record.componentScores?.[component]))
+    )
+    .map(record => Number(record.componentScores[component]));
+
+  const incorrectValues = band55to59
+    .filter(
+      record =>
+        record.oneHour?.result === "incorrect" &&
+        Number.isFinite(Number(record.componentScores?.[component]))
+    )
+    .map(record => Number(record.componentScores[component]));
+
+  const average = values =>
+    values.length
+      ? values.reduce((sum, value) => sum + value, 0) / values.length
+      : null;
+
+  const correctAvg = average(correctValues);
+  const incorrectAvg = average(incorrectValues);
+
+  const difference =
+    correctAvg !== null && incorrectAvg !== null
+      ? correctAvg - incorrectAvg
+      : null;
+
+  console.log(
+    `${component}: correct avg=${correctAvg?.toFixed(2) ?? "N/A"}, ` +
+    `incorrect avg=${incorrectAvg?.toFixed(2) ?? "N/A"}, ` +
+    `difference=${difference?.toFixed(2) ?? "N/A"}`
+  );
+}
