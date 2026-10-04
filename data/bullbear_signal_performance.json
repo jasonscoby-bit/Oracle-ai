@@ -3736,6 +3736,19 @@
       "marketDirection": 51.724137931034484
     },
     "eligibleAt": "2026-10-04T16:31:26.234Z",
-    "status": "pending"
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-10-04T16:31:26.234Z",
+      "actualTimestamp": "2026-10-04T16:30:00.000Z",
+      "skewSeconds": 86.234,
+      "price": 85233.70904655835,
+      "priceChangePercent": -0.11242711008415503,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   }
 ]
