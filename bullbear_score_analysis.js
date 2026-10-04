@@ -233,15 +233,6 @@ for (const component of componentNames) {
 }
 console.log("\n===== 55–59 COMPONENT ANALYSIS =====");
 
-const band55to59 = scored.filter(
-  record =>
-    Number.isFinite(Number(record.bullBearScore)) &&
-    Number(record.bullBearScore) >= 55 &&
-    Number(record.bullBearScore) <= 59 &&
-    (record.oneHour?.result === "correct" ||
-      record.oneHour?.result === "incorrect")
-);
-
 console.log(`55–59 signals analyzed: ${band55to59.length}`);
 
 for (const component of componentNames) {
