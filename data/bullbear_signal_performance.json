@@ -3684,5 +3684,25 @@
         "maxPriceSkewSeconds": 300
       }
     }
+  },
+  {
+    "id": "BTC:2026-10-04T10:15:20.721Z",
+    "timestamp": "2026-10-04T10:15:20.721Z",
+    "coin": "BTC",
+    "priceAtSignal": 85215.49354598235,
+    "direction": "Slightly Bullish",
+    "confidence": "Low",
+    "bullBearScore": 59,
+    "componentScores": {
+      "momentum": 53.01361052,
+      "volume": 98.87338186549736,
+      "shortTerm": 50.65852958,
+      "mediumTerm": 50.4679359,
+      "longTerm": 55.26972259,
+      "volatility": 60,
+      "marketDirection": 51.724137931034484
+    },
+    "eligibleAt": "2026-10-04T11:15:20.721Z",
+    "status": "pending"
   }
 ]
