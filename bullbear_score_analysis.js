@@ -184,3 +184,50 @@ for (const record of band55to59) {
     })
   );
 }
+console.log("");
+console.log("===== COMPONENT PERFORMANCE AUDIT =====");
+
+const componentNames = [
+  "momentum",
+  "volume",
+  "shortTerm",
+  "mediumTerm",
+  "longTerm",
+  "volatility",
+  "marketDirection"
+];
+
+for (const component of componentNames) {
+  const correctValues = scored
+    .filter(record =>
+      record.oneHour?.result === "correct" &&
+      Number.isFinite(Number(record.componentScores?.[component]))
+    )
+    .map(record => Number(record.componentScores[component]));
+
+  const incorrectValues = scored
+    .filter(record =>
+      record.oneHour?.result === "incorrect" &&
+      Number.isFinite(Number(record.componentScores?.[component]))
+    )
+    .map(record => Number(record.componentScores[component]));
+
+  const average = values =>
+    values.length
+      ? values.reduce((sum, value) => sum + value, 0) / values.length
+      : null;
+
+  const correctAvg = average(correctValues);
+  const incorrectAvg = average(incorrectValues);
+
+  const difference =
+    correctAvg !== null && incorrectAvg !== null
+      ? correctAvg - incorrectAvg
+      : null;
+
+  console.log(
+    `${component}: correct avg=${correctAvg?.toFixed(2) ?? "N/A"}, ` +
+    `incorrect avg=${incorrectAvg?.toFixed(2) ?? "N/A"}, ` +
+    `difference=${difference?.toFixed(2) ?? "N/A"}`
+  );
+}
