@@ -47,10 +47,11 @@ const volatilityScore =
   calibration.trend.trendScore;
 
   const score =
-    momentumScore * 0.25 +
+    momentumScore * 0.15 +
     volumeScore * 0.15 +
     shortTermScore * 0.20 +
     mediumTermScore * 0.20 +
+    longTermScore * 0.10 +
     volatilityScore * 0.10 +
     marketDirectionScore * 0.10;
 
