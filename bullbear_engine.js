@@ -47,13 +47,13 @@ const volatilityScore =
   calibration.trend.trendScore;
 
   const score =
-    momentumScore * 0.15 +
-    volumeScore * 0.15 +
-    shortTermScore * 0.20 +
-    mediumTermScore * 0.20 +
-    longTermScore * 0.10 +
-    volatilityScore * 0.10 +
-    marketDirectionScore * 0.10;
+  momentumScore * 0.20 +
+  volumeScore * 0.05 +
+  shortTermScore * 0.15 +
+  mediumTermScore * 0.20 +
+  longTermScore * 0.20 +
+  volatilityScore * 0.10 +
+  marketDirectionScore * 0.10;
 
   const bullBearScore = Math.round(clamp(score));
 
