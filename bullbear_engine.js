@@ -1,4 +1,4 @@
-const {
+const { 
   recordBullBearSignal
 } = require("./bullbear_signal_history");
 const { getCryptoQuote } = require("./cmc_api");
