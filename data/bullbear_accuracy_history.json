@@ -14290,5 +14290,74 @@
         "accuracy": null
       }
     }
+  },
+  {
+    "schemaVersion": 2,
+    "timestamp": "2026-10-23T21:53:23.232Z",
+    "totalSignals": 226,
+    "status": {
+      "pending": 1,
+      "complete": 225,
+      "unavailable": 0
+    },
+    "overall": {
+      "total": 215,
+      "correct": 149,
+      "incorrect": 66,
+      "accuracy": 69.3
+    },
+    "directional": {
+      "total": 45,
+      "correct": 25,
+      "incorrect": 20,
+      "accuracy": 55.56
+    },
+    "neutral": {
+      "total": 170,
+      "correct": 124,
+      "incorrect": 46,
+      "accuracy": 72.94
+    },
+    "excludedFlat": 10,
+    "byDirection": {
+      "Neutral": {
+        "total": 170,
+        "correct": 124,
+        "incorrect": 46,
+        "accuracy": 72.94
+      },
+      "Slightly Bearish": {
+        "total": 16,
+        "correct": 11,
+        "incorrect": 5,
+        "accuracy": 68.75
+      },
+      "Slightly Bullish": {
+        "total": 29,
+        "correct": 14,
+        "incorrect": 15,
+        "accuracy": 48.28
+      }
+    },
+    "byConfidence": {
+      "Low": {
+        "total": 212,
+        "correct": 147,
+        "incorrect": 65,
+        "accuracy": 69.34
+      },
+      "Medium": {
+        "total": 3,
+        "correct": 2,
+        "incorrect": 1,
+        "accuracy": 66.67
+      },
+      "High": {
+        "total": 0,
+        "correct": 0,
+        "incorrect": 0,
+        "accuracy": null
+      }
+    }
   }
 ]
