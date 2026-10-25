@@ -7512,5 +7512,38 @@
         "maxPriceSkewSeconds": 300
       }
     }
+  },
+  {
+    "id": "BTC:2026-10-25T22:51:56.323Z",
+    "timestamp": "2026-10-25T22:51:56.323Z",
+    "coin": "BTC",
+    "priceAtSignal": 80428.65541664672,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 46,
+    "componentScores": {
+      "momentum": 49.72939388,
+      "volume": 34.09878995790754,
+      "shortTerm": 51.71566934,
+      "mediumTerm": 46.9616272,
+      "longTerm": 45.69461282,
+      "volatility": 30,
+      "marketDirection": 48.275862068965516
+    },
+    "eligibleAt": "2026-10-25T23:51:56.323Z",
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-10-25T23:51:56.323Z",
+      "actualTimestamp": "2026-10-25T23:50:00.000Z",
+      "skewSeconds": 116.323,
+      "price": 79774.35284212376,
+      "priceChangePercent": -0.813519225372433,
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   }
 ]
