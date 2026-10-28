@@ -5,8 +5,12 @@ const DEFAULT_EVALUATION_CONFIG = Object.freeze({
 });
 
 function finiteNumber(value, name) {
+  if ((typeof value !== "number" && typeof value !== "string") ||
+      (typeof value === "string" && value.trim() === "")) {
+    throw new Error(`${name} must be a finite number`);
+  }
   const number = Number(value);
-  if (!Number.isFinite(number)) throw new Error(`${name} must be finite`);
+  if (!Number.isFinite(number)) throw new Error(`${name} must be a finite number`);
   return number;
 }
 
