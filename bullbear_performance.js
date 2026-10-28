@@ -95,10 +95,20 @@ async function calculatePerformance() {
         record.status = "unavailable";
         record.evaluationError = "No historical price returned";
       } else {
-        const timing = validateEvaluationPrice({
-          targetTimestamp: target.toISOString(),
-          actualTimestamp: historical.timestamp
-        });
+        let timing;
+        try {
+          timing = validateEvaluationPrice({
+            targetTimestamp: target.toISOString(),
+            actualTimestamp: historical.timestamp
+          });
+        } catch (error) {
+          record.status = "unavailable";
+          record.evaluationError = `Invalid historical price timestamp: ${error.message}`;
+          results.push(record);
+          console.error(`Invalid historical timestamp for ${id}: ${error.message}`);
+          continue;
+        }
+
         const startPrice = Number(signal.price);
         const endPrice = Number(historical.price);
 
