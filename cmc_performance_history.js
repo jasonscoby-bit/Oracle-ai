@@ -2,6 +2,12 @@ const CMC_HISTORY_URL =
   "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical";
 
 async function getHistoricalPrice(timestamp, coin) {
+  // CoinMarketCap asset ID 1 is Bitcoin. Do not silently evaluate another
+  // asset using BTC historical prices if multi-coin support is added later.
+  if (coin !== "BTC") {
+    throw new Error(`Historical performance pricing currently supports BTC only; received ${coin}`);
+  }
+
   const apiKey = process.env.CMC_API_KEY;
   if (!apiKey) {
     throw new Error("CMC_API_KEY is not configured");
