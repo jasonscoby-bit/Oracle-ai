@@ -20,6 +20,14 @@ function signalId(signal) {
   return signal.id || `${signal.coin}:${signal.timestamp}`;
 }
 
+function safeEvaluationTiming(targetTimestamp, actualTimestamp) {
+  try {
+    return validateEvaluationPrice({ targetTimestamp, actualTimestamp });
+  } catch (error) {
+    return { valid: false, error: error.message };
+  }
+}
+
 function printAccuracyBreakdown(records) {
   const completed = records.filter(r => r.status === "complete");
   const scored = completed.filter(r => ["correct", "incorrect"].includes(r.oneHour?.result));
@@ -95,17 +103,12 @@ async function calculatePerformance() {
         record.status = "unavailable";
         record.evaluationError = "No historical price returned";
       } else {
-        let timing;
-        try {
-          timing = validateEvaluationPrice({
-            targetTimestamp: target.toISOString(),
-            actualTimestamp: historical.timestamp
-          });
-        } catch (error) {
+        const timing = safeEvaluationTiming(target.toISOString(), historical.timestamp);
+        if (timing.error) {
           record.status = "unavailable";
-          record.evaluationError = `Invalid historical price timestamp: ${error.message}`;
+          record.evaluationError = `Invalid historical price timestamp: ${timing.error}`;
           results.push(record);
-          console.error(`Invalid historical timestamp for ${id}: ${error.message}`);
+          console.error(`Invalid historical timestamp for ${id}: ${timing.error}`);
           continue;
         }
 
@@ -150,4 +153,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming };
