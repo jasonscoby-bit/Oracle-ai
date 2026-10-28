@@ -59,6 +59,15 @@ function getEvaluationTarget(signalTimestamp) {
   return new Date(signalTime.getTime() + 60 * 60 * 1000);
 }
 
+function shouldEvaluateRecord(record, now, target) {
+  return (record?.status === "pending" || record?.status === "unavailable") &&
+    now instanceof Date &&
+    Number.isFinite(now.getTime()) &&
+    target instanceof Date &&
+    Number.isFinite(target.getTime()) &&
+    now >= target;
+}
+
 function preserveMissingExistingRecords(results, existing) {
   const resultIds = new Set(results.map(record => record.id || `${record.coin}:${record.timestamp}`));
   const preserved = [...results];
@@ -146,7 +155,7 @@ async function calculatePerformance() {
     if (record.status === "complete" && record.evaluationError) {
       delete record.evaluationError;
     }
-    if ((record.status === "pending" || record.status === "unavailable") && now >= target) {
+    if (shouldEvaluateRecord(record, now, target)) {
       let historical;
       try {
         historical = await getHistoricalPrice(target.toISOString(), record.coin);
@@ -217,4 +226,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget, shouldEvaluateRecord };
