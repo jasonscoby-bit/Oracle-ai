@@ -2,8 +2,9 @@ name: BullBear Performance
 
 on:
   workflow_dispatch:
+  # Run 15 minutes after the hourly signal collector to reduce contention.
   schedule:
-    - cron: "0 * * * *"
+    - cron: "15 * * * *"
 
 permissions:
   contents: write
