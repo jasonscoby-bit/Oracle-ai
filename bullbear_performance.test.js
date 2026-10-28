@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { signalId, printAccuracyBreakdown } = require("./bullbear_performance");
+const { signalId, printAccuracyBreakdown, safeEvaluationTiming } = require("./bullbear_performance");
 
 test("signalId prefers stable IDs and supports legacy records", () => {
   assert.equal(signalId({ id: "signal-123", coin: "BTC", timestamp: "2026-10-28T00:00:00.000Z" }), "signal-123");
@@ -25,4 +25,16 @@ test("performance breakdown excludes missing directions from directional accurac
   assert.ok(lines.some(line => line.includes("Directional only: 1/2 (50.00%)")));
   assert.ok(lines.some(line => line.includes("Overall scored: 2/4 (50.00%)")));
   assert.ok(lines.some(line => line.includes("Flat/excluded: 1")));
+});
+
+test("malformed historical timestamps are rejected without throwing", () => {
+  const result = safeEvaluationTiming("2026-10-28T01:00:00.000Z", "not-a-date");
+  assert.equal(result.valid, false);
+  assert.match(result.error, /valid dates/);
+});
+
+test("historical prices outside the allowed skew are marked invalid", () => {
+  const result = safeEvaluationTiming("2026-10-28T01:00:00.000Z", "2026-10-28T01:05:01.000Z");
+  assert.equal(result.valid, false);
+  assert.equal(result.skewSeconds, 301);
 });
