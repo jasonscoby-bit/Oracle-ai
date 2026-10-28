@@ -86,10 +86,14 @@ for (const band of bands) {
 console.log("");
 console.log("===== BULLISH VS BEARISH ANALYSIS =====");
 
-for (const direction of ["Slightly Bullish", "Slightly Bearish"]) {
-  const matches = directionalScored.filter(
-    record => record.direction === direction
-  );
+for (const direction of [
+  "Strong Bullish",
+  "Bullish",
+  "Slightly Bullish",
+  "Slightly Bearish",
+  "Bearish",
+  "Strong Bearish"
+]) {
 
   const correct = matches.filter(
     record => record.oneHour.result === "correct"
@@ -110,9 +114,14 @@ for (const direction of ["Slightly Bullish", "Slightly Bearish"]) {
 console.log("");
 console.log("===== DIRECTIONAL SCORE-BAND BY DIRECTION =====");
 
-for (const direction of ["Slightly Bullish", "Slightly Bearish"]) {
-  console.log("");
-  console.log(`--- ${direction} ---`);
+for (const direction of [
+  "Strong Bullish",
+  "Bullish",
+  "Slightly Bullish",
+  "Slightly Bearish",
+  "Bearish",
+  "Strong Bearish"
+]) {
 
   const directionRecords = directionalScored.filter(
     record => record.direction === direction
