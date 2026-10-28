@@ -174,6 +174,17 @@ async function calculatePerformance() {
     results.push(record);
   }
 
+  // Preserve historical performance records even if their source signal
+  // is later absent from the current history file.
+  const resultIds = new Set(results.map(record => record.id || `${record.coin}:${record.timestamp}`));
+  for (const record of existing) {
+    const id = record.id || `${record.coin}:${record.timestamp}`;
+    if (!resultIds.has(id)) {
+      results.push(record);
+      resultIds.add(id);
+    }
+  }
+
   fs.writeFileSync(PERFORMANCE_FILE, JSON.stringify(results, null, 2));
   printAccuracyBreakdown(results);
   console.log(`Performance records: ${results.length} (history rows: ${rawSignals.length}; duplicates skipped: ${duplicateIds.length})`);
