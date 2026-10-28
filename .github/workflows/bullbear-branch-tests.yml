@@ -22,4 +22,4 @@ jobs:
         with:
           node-version: 20
       - name: Test BullBear scoring model
-        run: node --test bullbear_engine.test.js
+        run: node --test bullbear_engine.test.js bullbear_evaluator.test.js bullbear_accuracy.test.js
