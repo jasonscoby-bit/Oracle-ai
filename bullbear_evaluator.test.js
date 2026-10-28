@@ -24,6 +24,8 @@ test("evaluation timestamps outside the allowed skew are rejected", () => {
 });
 
 test("unsupported directions and invalid numeric inputs throw", () => {
-  assert.throws(() => evaluateDirection({ direction: "Unknown", priceChangePercent: 0 }), /Unsupported BullBear direction/);
-  assert.throws(() => evaluateDirection({ direction: "Neutral", priceChangePercent: "not-a-number" }), /must be finite/);
+  assert.throws(() => evaluateDirection({ direction: "Sideways", priceChangePercent: 1 }), /Unsupported BullBear direction/);
+  assert.throws(() => evaluateDirection({ direction: "Neutral", priceChangePercent: NaN }), /finite number/);
+  assert.throws(() => evaluateDirection({ direction: "Neutral", priceChangePercent: null }), /finite number/);
+  assert.throws(() => evaluateDirection({ direction: "Neutral", priceChangePercent: "" }), /finite number/);
 });
