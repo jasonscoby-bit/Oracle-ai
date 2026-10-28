@@ -52,8 +52,8 @@ for (const band of bands) {
 console.log("");
 console.log("===== DIRECTIONAL SCORE-BAND ANALYSIS =====");
 
-const directionalScored = scored.filter(record =>
-  ["Slightly Bullish", "Slightly Bearish"].includes(record.direction)
+const directionalScored = scored.filter(
+  record => record.direction && record.direction !== "Neutral"
 );
 
 console.log(`Directional scored signals: ${directionalScored.length}`);
