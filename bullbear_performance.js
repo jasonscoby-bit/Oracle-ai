@@ -50,6 +50,12 @@ function isCompletedEvaluation(record) {
   return record?.status === "complete";
 }
 
+function getEvaluationTarget(signalTimestamp) {
+  const signalTime = new Date(signalTimestamp);
+  if (!Number.isFinite(signalTime.getTime())) return null;
+  return new Date(signalTime.getTime() + 60 * 60 * 1000);
+}
+
 function preserveMissingExistingRecords(results, existing) {
   const resultIds = new Set(results.map(record => record.id || `${record.coin}:${record.timestamp}`));
   const preserved = [...results];
@@ -100,10 +106,7 @@ async function calculatePerformance() {
 
   for (const signal of signals) {
     const id = signalId(signal);
-    const signalTime = new Date(signal.timestamp);
-    if (Number.isNaN(signalTime.getTime())) throw new Error(`Invalid timestamp for ${id}`);
-
-    const target = new Date(signalTime.getTime() + 60 * 60 * 1000);
+    const target = getEvaluationTarget(signal.timestamp);
     let record = existingById.get(id) || {
       id,
       timestamp: signal.timestamp,
@@ -113,9 +116,17 @@ async function calculatePerformance() {
       confidence: signal.confidence,
       bullBearScore: signal.bullBearScore,
       componentScores: signal.componentScores,
-      eligibleAt: target.toISOString(),
-      status: "pending"
+      eligibleAt: target ? target.toISOString() : null,
+      status: target ? "pending" : "unavailable"
     };
+
+    if (!target) {
+      record.status = "unavailable";
+      record.evaluationError = "Invalid signal timestamp";
+      results.push(record);
+      console.error(`Invalid signal timestamp for ${id}; skipped this signal`);
+      continue;
+    }
 
     // Completed evaluations are immutable: later hourly runs must not
     // re-fetch prices or rewrite the result for the same signal ID.
@@ -201,4 +212,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget };
