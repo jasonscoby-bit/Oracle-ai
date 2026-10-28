@@ -46,6 +46,10 @@ function safeEvaluationTiming(targetTimestamp, actualTimestamp) {
   }
 }
 
+function isCompletedEvaluation(record) {
+  return record?.status === "complete";
+}
+
 function printAccuracyBreakdown(records) {
   const completed = records.filter(r => r.status === "complete");
   const scored = completed.filter(r => ["correct", "incorrect"].includes(r.oneHour?.result));
@@ -102,7 +106,7 @@ async function calculatePerformance() {
 
     // Completed evaluations are immutable: later hourly runs must not
     // re-fetch prices or rewrite the result for the same signal ID.
-    if (record.status === "complete") {
+    if (isCompletedEvaluation(record)) {
       results.push(record);
       continue;
     }
@@ -182,4 +186,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation };
