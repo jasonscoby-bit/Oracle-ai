@@ -7,7 +7,7 @@ const records = JSON.parse(fs.readFileSync(filePath, "utf8"));
 const scored = records.filter(record =>
   record.status === "complete" &&
   ["correct", "incorrect"].includes(record.oneHour?.result) &&
-  Number.isFinite(Number(record.bullBearScore))
+  typeof record.bullBearScore === "number" && Number.isFinite(record.bullBearScore)
 );
 
 const bands = [
@@ -212,7 +212,7 @@ for (const component of componentNames) {
   const correctValues = scored
     .filter(record =>
       record.oneHour?.result === "correct" &&
-      Number.isFinite(Number(record.componentScores?.[component]))
+      typeof record.componentScores?.[component] === "number" && Number.isFinite(record.componentScores[component])
     )
     .map(record => Number(record.componentScores[component]));
 
