@@ -25,7 +25,7 @@ function printAccuracyBreakdown(records) {
   const scored = completed.filter(r => ["correct", "incorrect"].includes(r.oneHour?.result));
   const groups = {
     "Overall scored": scored,
-    "Directional only": scored.filter(r => r.direction !== "Neutral"),
+    "Directional only": scored.filter(r => typeof r.direction === "string" && r.direction !== "Neutral"),
     "Neutral only": scored.filter(r => r.direction === "Neutral")
   };
 
