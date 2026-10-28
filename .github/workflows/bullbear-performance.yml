@@ -8,6 +8,11 @@ on:
 permissions:
   contents: write
 
+# Avoid overlapping runs that could race while updating the same JSON files.
+concurrency:
+  group: bullbear-performance-main
+  cancel-in-progress: false
+
 jobs:
   performance:
     runs-on: ubuntu-latest
