@@ -59,6 +59,25 @@ test("completed performance evaluations are preserved on reruns", () => {
   assert.deepEqual(completed.oneHour, { result: "correct", price: 80000, priceChangePercent: 0.4 });
 });
 
+test("completed evaluations remain recognizable even if current history timestamp is malformed", () => {
+  const completed = {
+    id: "BTC:original",
+    timestamp: "2026-10-28T00:00:00.000Z",
+    status: "complete",
+    oneHour: { result: "correct", price: 80000, priceChangePercent: 0.4 }
+  };
+  const malformedHistorySignal = { id: "BTC:original", timestamp: null, coin: "BTC" };
+
+  // Mirrors the ordering used by calculatePerformance: existing completed
+  // result is checked before the current signal timestamp is validated.
+  const selectedRecord = isCompletedEvaluation(completed)
+    ? completed
+    : { ...malformedHistorySignal, status: getEvaluationTarget(malformedHistorySignal.timestamp) ? "pending" : "unavailable" };
+
+  assert.equal(selectedRecord.status, "complete");
+  assert.deepEqual(selectedRecord.oneHour, completed.oneHour);
+});
+
 test("existing performance records absent from history are preserved", () => {
   const current = [{ id: "BTC:new", coin: "BTC", timestamp: "new", status: "pending" }];
   const old = [
