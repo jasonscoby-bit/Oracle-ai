@@ -109,8 +109,17 @@ async function calculatePerformance() {
 
   for (const signal of signals) {
     const id = signalId(signal);
+    const existingRecord = existingById.get(id);
+
+    // Preserve completed evaluations before validating current history data.
+    // A malformed later history row must not downgrade a finalized result.
+    if (isCompletedEvaluation(existingRecord)) {
+      results.push(existingRecord);
+      continue;
+    }
+
     const target = getEvaluationTarget(signal.timestamp);
-    let record = existingById.get(id) || {
+    let record = existingRecord || {
       id,
       timestamp: signal.timestamp,
       coin: signal.coin,
@@ -128,13 +137,6 @@ async function calculatePerformance() {
       record.evaluationError = "Invalid signal timestamp";
       results.push(record);
       console.error(`Invalid signal timestamp for ${id}; skipped this signal`);
-      continue;
-    }
-
-    // Completed evaluations are immutable: later hourly runs must not
-    // re-fetch prices or rewrite the result for the same signal ID.
-    if (isCompletedEvaluation(record)) {
-      results.push(record);
       continue;
     }
 
