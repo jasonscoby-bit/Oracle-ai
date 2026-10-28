@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation } = require("./bullbear_performance");
+const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords } = require("./bullbear_performance");
 
 test("signalId prefers stable IDs and supports legacy records", () => {
   assert.equal(signalId({ id: "signal-123", coin: "BTC", timestamp: "2026-10-28T00:00:00.000Z" }), "signal-123");
@@ -57,4 +57,15 @@ test("completed performance evaluations are preserved on reruns", () => {
   assert.equal(isCompletedEvaluation({ status: "pending" }), false);
   assert.equal(isCompletedEvaluation({ status: "unavailable" }), false);
   assert.deepEqual(completed.oneHour, { result: "correct", price: 80000, priceChangePercent: 0.4 });
+});
+
+test("existing performance records absent from history are preserved", () => {
+  const current = [{ id: "BTC:new", coin: "BTC", timestamp: "new", status: "pending" }];
+  const old = [
+    { id: "BTC:old", coin: "BTC", timestamp: "old", status: "complete" },
+    { id: "BTC:new", coin: "BTC", timestamp: "new", status: "complete" }
+  ];
+  const result = preserveMissingExistingRecords(current, old);
+  assert.deepEqual(result.map(record => record.id), ["BTC:new", "BTC:old"]);
+  assert.equal(result[1].status, "complete");
 });
