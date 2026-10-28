@@ -10,7 +10,7 @@ permissions:
 
 # Avoid overlapping runs that could race while updating the same JSON files.
 concurrency:
-  group: bullbear-performance-main
+  group: bullbear-main-data-updates
   cancel-in-progress: false
 
 jobs:
