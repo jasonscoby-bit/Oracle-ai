@@ -27,9 +27,15 @@ function clamp(value, min = 0, max = 100) {
   // Long-term trend
   const longTermScore = clamp(50 + longTerm);
 
-  // Historical volume strength
-  const volumeRatio = analytics.volume.volumeRatio || 1;
-  const volumeScore = clamp(50 + (volumeRatio - 1) * 100);
+  // Historical volume strength.
+  // Use the calibrated historical percentile score (40–70) rather than
+  // linearly extrapolating volumeRatio, which drove ordinary low-volume
+  // readings to 0 and overwhelmed the intended volume signal.
+  const volumeRatio = analytics.volume.volumeRatio ?? 1;
+  const calibratedVolumeScore = Number(calibration?.volume?.volumeScore);
+  const volumeScore = Number.isFinite(calibratedVolumeScore)
+    ? clamp(calibratedVolumeScore)
+    : clamp(50 + (volumeRatio - 1) * 100);
 
   // Historical volatility.
   // Around 2% daily volatility is treated as neutral.
