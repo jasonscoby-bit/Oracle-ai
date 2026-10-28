@@ -37,7 +37,7 @@ function buildSummary(records) {
       unavailable: records.filter(r => r.status === "unavailable").length
     },
     overall: metrics(completed),
-    directional: metrics(completed.filter(r => r.direction !== "Neutral")),
+    directional: metrics(completed.filter(r => typeof r.direction === "string" && r.direction !== "Neutral")),
     neutral: metrics(completed.filter(r => r.direction === "Neutral")),
     excludedFlat: completed.filter(r => r.oneHour?.result === "flat").length,
     byDirection: Object.fromEntries(
