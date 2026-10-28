@@ -50,6 +50,19 @@ function isCompletedEvaluation(record) {
   return record?.status === "complete";
 }
 
+function preserveMissingExistingRecords(results, existing) {
+  const resultIds = new Set(results.map(record => record.id || `${record.coin}:${record.timestamp}`));
+  const preserved = [...results];
+  for (const record of existing) {
+    const id = record.id || `${record.coin}:${record.timestamp}`;
+    if (!resultIds.has(id)) {
+      preserved.push(record);
+      resultIds.add(id);
+    }
+  }
+  return preserved;
+}
+
 function printAccuracyBreakdown(records) {
   const completed = records.filter(r => r.status === "complete");
   const scored = completed.filter(r => ["correct", "incorrect"].includes(r.oneHour?.result));
@@ -174,20 +187,11 @@ async function calculatePerformance() {
     results.push(record);
   }
 
-  // Preserve historical performance records even if their source signal
-  // is later absent from the current history file.
-  const resultIds = new Set(results.map(record => record.id || `${record.coin}:${record.timestamp}`));
-  for (const record of existing) {
-    const id = record.id || `${record.coin}:${record.timestamp}`;
-    if (!resultIds.has(id)) {
-      results.push(record);
-      resultIds.add(id);
-    }
-  }
+  const finalResults = preserveMissingExistingRecords(results, existing);
 
-  fs.writeFileSync(PERFORMANCE_FILE, JSON.stringify(results, null, 2));
-  printAccuracyBreakdown(results);
-  console.log(`Performance records: ${results.length} (history rows: ${rawSignals.length}; duplicates skipped: ${duplicateIds.length})`);
+  fs.writeFileSync(PERFORMANCE_FILE, JSON.stringify(finalResults, null, 2));
+  printAccuracyBreakdown(finalResults);
+  console.log(`Performance records: ${finalResults.length} (history rows: ${rawSignals.length}; duplicates skipped: ${duplicateIds.length})`);
 }
 
 if (require.main === module) {
@@ -197,4 +201,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords };
