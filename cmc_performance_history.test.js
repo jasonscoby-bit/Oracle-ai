@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { getHistoricalPrice } = require("./cmc_performance_history");
+const { getHistoricalPrice, selectClosestValidQuote } = require("./cmc_performance_history");
 
 test("historical price lookup rejects unsupported assets rather than using BTC pricing", async () => {
   await assert.rejects(
@@ -21,4 +21,23 @@ test("historical BTC price lookup requires the API key", async () => {
     if (previous === undefined) delete process.env.CMC_API_KEY;
     else process.env.CMC_API_KEY = previous;
   }
+});
+
+test("historical quote selector ignores malformed timestamps and invalid prices", () => {
+  const result = selectClosestValidQuote([
+    { timestamp: "not-a-date", quote: { USD: { price: 80000 } } },
+    { timestamp: "2026-10-28T00:00:00.000Z", quote: { USD: { price: 0 } } },
+    { timestamp: "2026-10-28T00:02:00.000Z", quote: { USD: { price: 80100 } } },
+    { timestamp: "2026-10-28T00:01:00.000Z", quote: { USD: { price: "80050" } } }
+  ], "2026-10-28T00:00:00.000Z");
+  assert.deepEqual(result, {
+    timestamp: "2026-10-28T00:02:00.000Z",
+    price: 80100
+  });
+});
+
+test("historical quote selector returns null when no valid quote exists", () => {
+  assert.equal(selectClosestValidQuote([{ timestamp: "bad", quote: { USD: { price: 1 } } }], "2026-10-28T00:00:00.000Z"), null);
+  assert.equal(selectClosestValidQuote([], "2026-10-28T00:00:00.000Z"), null);
+  assert.equal(selectClosestValidQuote([], "bad-target"), null);
 });
