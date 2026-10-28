@@ -77,10 +77,20 @@ async function calculatePerformance() {
       delete record.evaluationError;
     }
     if ((record.status === "pending" || record.status === "unavailable") && now >= target) {
-      const historical = await getHistoricalPrice(
-  target.toISOString(),
-  record.coin
-);
+      let historical;
+      try {
+        historical = await getHistoricalPrice(target.toISOString(), record.coin);
+      } catch (error) {
+        // A transient API/network failure for one signal should not discard
+        // all other performance updates. Unavailable records are retried on
+        // the next scheduled run.
+        record.status = "unavailable";
+        record.evaluationError = `Historical price lookup failed: ${error.message}`;
+        results.push(record);
+        console.error(`Historical price lookup failed for ${id}: ${error.message}`);
+        continue;
+      }
+
       if (!historical) {
         record.status = "unavailable";
         record.evaluationError = "No historical price returned";
