@@ -6,6 +6,13 @@ on:
     - cron: "0 * * * *"
 permissions:
   contents: write
+
+# Serialize live history writes with performance-history writes to avoid
+# concurrent commits racing on the same main-branch JSON files.
+concurrency:
+  group: bullbear-main-data-updates
+  cancel-in-progress: false
+
 jobs:
   test-bullbear:
     runs-on: ubuntu-latest
