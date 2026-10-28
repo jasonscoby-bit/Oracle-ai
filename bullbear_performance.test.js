@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords } = require("./bullbear_performance");
+const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget } = require("./bullbear_performance");
 
 test("signalId prefers stable IDs and supports legacy records", () => {
   assert.equal(signalId({ id: "signal-123", coin: "BTC", timestamp: "2026-10-28T00:00:00.000Z" }), "signal-123");
@@ -68,4 +68,13 @@ test("existing performance records absent from history are preserved", () => {
   const result = preserveMissingExistingRecords(current, old);
   assert.deepEqual(result.map(record => record.id), ["BTC:new", "BTC:old"]);
   assert.equal(result[1].status, "complete");
+});
+
+test("invalid signal timestamps are rejected without throwing", () => {
+  assert.equal(getEvaluationTarget("not-a-timestamp"), null);
+  assert.equal(getEvaluationTarget(null), null);
+});
+
+test("valid signal timestamps produce a one-hour evaluation target", () => {
+  assert.equal(getEvaluationTarget("2026-10-28T00:00:00.000Z").toISOString(), "2026-10-28T01:00:00.000Z");
 });
