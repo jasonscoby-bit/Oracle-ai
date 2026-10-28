@@ -51,6 +51,9 @@ function isCompletedEvaluation(record) {
 }
 
 function getEvaluationTarget(signalTimestamp) {
+  if (typeof signalTimestamp !== "string" || signalTimestamp.trim() === "") {
+    return null;
+  }
   const signalTime = new Date(signalTimestamp);
   if (!Number.isFinite(signalTime.getTime())) return null;
   return new Date(signalTime.getTime() + 60 * 60 * 1000);
