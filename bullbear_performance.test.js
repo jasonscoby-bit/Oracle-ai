@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals } = require("./bullbear_performance");
+const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation } = require("./bullbear_performance");
 
 test("signalId prefers stable IDs and supports legacy records", () => {
   assert.equal(signalId({ id: "signal-123", coin: "BTC", timestamp: "2026-10-28T00:00:00.000Z" }), "signal-123");
@@ -46,4 +46,15 @@ test("duplicate signal history rows are skipped without duplicating results", ()
   const result = deduplicateSignals([first, duplicate, other]);
   assert.deepEqual(result.signals, [first, other]);
   assert.deepEqual(result.duplicateIds, ["BTC:2026-10-28T00:00:00.000Z"]);
+});
+
+test("completed performance evaluations are preserved on reruns", () => {
+  const completed = {
+    status: "complete",
+    oneHour: { result: "correct", price: 80000, priceChangePercent: 0.4 }
+  };
+  assert.equal(isCompletedEvaluation(completed), true);
+  assert.equal(isCompletedEvaluation({ status: "pending" }), false);
+  assert.equal(isCompletedEvaluation({ status: "unavailable" }), false);
+  assert.deepEqual(completed.oneHour, { result: "correct", price: 80000, priceChangePercent: 0.4 });
 });
