@@ -20,6 +20,24 @@ function signalId(signal) {
   return signal.id || `${signal.coin}:${signal.timestamp}`;
 }
 
+function deduplicateSignals(signals) {
+  const seen = new Set();
+  const unique = [];
+  const duplicateIds = [];
+
+  for (const signal of signals) {
+    const id = signalId(signal);
+    if (seen.has(id)) {
+      duplicateIds.push(id);
+      continue;
+    }
+    seen.add(id);
+    unique.push(signal);
+  }
+
+  return { signals: unique, duplicateIds };
+}
+
 function safeEvaluationTiming(targetTimestamp, actualTimestamp) {
   try {
     return validateEvaluationPrice({ targetTimestamp, actualTimestamp });
@@ -51,7 +69,11 @@ function printAccuracyBreakdown(records) {
 }
 
 async function calculatePerformance() {
-  const signals = readArray(HISTORY_FILE);
+  const rawSignals = readArray(HISTORY_FILE);
+  const { signals, duplicateIds } = deduplicateSignals(rawSignals);
+  if (duplicateIds.length) {
+    console.warn(`Skipped ${duplicateIds.length} duplicate signal record(s): ${[...new Set(duplicateIds)].join(", ")}`);
+  }
   const existing = readArray(PERFORMANCE_FILE);
   const existingById = new Map(
     existing.map(record => [record.id || `${record.coin}:${record.timestamp}`, record])
@@ -143,7 +165,7 @@ async function calculatePerformance() {
 
   fs.writeFileSync(PERFORMANCE_FILE, JSON.stringify(results, null, 2));
   printAccuracyBreakdown(results);
-  console.log(`Performance records: ${results.length}`);
+  console.log(`Performance records: ${results.length} (history rows: ${rawSignals.length}; duplicates skipped: ${duplicateIds.length})`);
 }
 
 if (require.main === module) {
@@ -153,4 +175,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals };
