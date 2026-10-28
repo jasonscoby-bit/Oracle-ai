@@ -100,6 +100,13 @@ async function calculatePerformance() {
       status: "pending"
     };
 
+    // Completed evaluations are immutable: later hourly runs must not
+    // re-fetch prices or rewrite the result for the same signal ID.
+    if (record.status === "complete") {
+      results.push(record);
+      continue;
+    }
+
     if (!record.componentScores && signal.componentScores) {
       record.componentScores = signal.componentScores;
     }
