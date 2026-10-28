@@ -1,6 +1,33 @@
 const CMC_HISTORY_URL =
   "https://pro-api.coinmarketcap.com/v3/cryptocurrency/quotes/historical";
 
+function selectClosestValidQuote(quotes, targetTimestamp) {
+  const target = new Date(targetTimestamp);
+  if (!Number.isFinite(target.getTime()) || !Array.isArray(quotes)) return null;
+
+  const validQuotes = quotes.filter(quote => {
+    const quoteTime = new Date(quote?.timestamp).getTime();
+    const price = quote?.quote?.USD?.price;
+    return Number.isFinite(quoteTime) &&
+      typeof price === "number" &&
+      Number.isFinite(price) &&
+      price > 0;
+  });
+
+  if (validQuotes.length === 0) return null;
+
+  const closest = validQuotes.reduce((best, current) => {
+    const bestDistance = Math.abs(new Date(best.timestamp).getTime() - target.getTime());
+    const currentDistance = Math.abs(new Date(current.timestamp).getTime() - target.getTime());
+    return currentDistance < bestDistance ? current : best;
+  });
+
+  return {
+    timestamp: closest.timestamp,
+    price: closest.quote.USD.price
+  };
+}
+
 async function getHistoricalPrice(timestamp, coin) {
   // CoinMarketCap asset ID 1 is Bitcoin. Do not silently evaluate another
   // asset using BTC historical prices if multi-coin support is added later.
@@ -14,8 +41,12 @@ async function getHistoricalPrice(timestamp, coin) {
   }
 
   const target = new Date(timestamp);
+  if (!Number.isFinite(target.getTime())) {
+    throw new Error("Historical price target timestamp must be valid");
+  }
+
   const start = new Date(target.getTime() - 2 * 60 * 60 * 1000);
-const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
+  const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
 
   const params = new URLSearchParams({
     id: "1",
@@ -44,34 +75,11 @@ const end = new Date(target.getTime() + 2 * 60 * 60 * 1000);
   }
 
   const data = await response.json();
-
-  const asset = data.data?.["1"];
-
-  if (!asset || !asset.quotes || asset.quotes.length === 0) {
-
-  return null;
-}
-
-  const quote = asset.quotes.reduce((closest, current) => {
-  const closestDistance = Math.abs(
-    new Date(closest.timestamp).getTime() - target.getTime()
-  );
-
-  const currentDistance = Math.abs(
-    new Date(current.timestamp).getTime() - target.getTime()
-  );
-
-  return currentDistance < closestDistance
-    ? current
-    : closest;
-});
-
-return {
-  timestamp: quote.timestamp,
-  price: quote.quote.USD.price
-};
+  const quotes = data.data?.["1"]?.quotes;
+  return selectClosestValidQuote(quotes, target.toISOString());
 }
 
 module.exports = {
-  getHistoricalPrice
+  getHistoricalPrice,
+  selectClosestValidQuote
 };
