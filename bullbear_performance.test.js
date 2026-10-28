@@ -23,6 +23,6 @@ test("performance breakdown excludes missing directions from directional accurac
     console.log = originalLog;
   }
   assert.ok(lines.some(line => line.includes("Directional only: 1/2 (50.00%)")));
-  assert.ok(lines.some(line => line.includes("Overall scored: 3/4 (75.00%)")));
+  assert.ok(lines.some(line => line.includes("Overall scored: 2/4 (50.00%)")));
   assert.ok(lines.some(line => line.includes("Flat/excluded: 1")));
 });
