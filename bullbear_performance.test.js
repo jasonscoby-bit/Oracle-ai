@@ -97,3 +97,13 @@ test("invalid signal timestamps are rejected without throwing", () => {
 test("valid signal timestamps produce a one-hour evaluation target", () => {
   assert.equal(getEvaluationTarget("2026-10-28T00:00:00.000Z").toISOString(), "2026-10-28T01:00:00.000Z");
 });
+
+test("unavailable records are eligible for retry once their target time has passed", () => {
+  const { shouldEvaluateRecord } = require("./bullbear_performance");
+  const now = new Date("2026-10-28T02:00:00.000Z");
+  const target = new Date("2026-10-28T01:00:00.000Z");
+  assert.equal(shouldEvaluateRecord({ status: "unavailable" }, now, target), true);
+  assert.equal(shouldEvaluateRecord({ status: "pending" }, now, target), true);
+  assert.equal(shouldEvaluateRecord({ status: "complete" }, now, target), false);
+  assert.equal(shouldEvaluateRecord({ status: "unavailable" }, new Date("2026-10-28T00:59:00.000Z"), target), false);
+});
