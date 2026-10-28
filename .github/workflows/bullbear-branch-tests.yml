@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - jasonscoby-bit-patch-1
+      - main
   workflow_dispatch:
 
 permissions:
