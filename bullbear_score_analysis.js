@@ -94,7 +94,9 @@ for (const direction of [
   "Bearish",
   "Strong Bearish"
 ]) {
-
+const matches = directionalScored.filter(
+  record => record.direction === direction
+);
   const correct = matches.filter(
     record => record.oneHour.result === "correct"
   ).length;
