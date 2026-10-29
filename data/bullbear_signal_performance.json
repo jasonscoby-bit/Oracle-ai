@@ -8007,5 +8007,71 @@
         "maxPriceSkewSeconds": 300
       }
     }
+  },
+  {
+    "id": "BTC:2026-10-28T23:42:47.482Z",
+    "timestamp": "2026-10-28T23:42:47.482Z",
+    "coin": "BTC",
+    "priceAtSignal": 81240.74741229048,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 49,
+    "componentScores": {
+      "momentum": 52.15634256,
+      "volume": 50,
+      "shortTerm": 49.96050578,
+      "mediumTerm": 42.97396982,
+      "longTerm": 47.21207152,
+      "volatility": 60,
+      "marketDirection": 41.37931034482759
+    },
+    "eligibleAt": "2026-10-29T00:42:47.482Z",
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-10-29T00:42:47.482Z",
+      "actualTimestamp": "2026-10-29T00:40:00.000Z",
+      "skewSeconds": 167.482,
+      "price": 81090.77187623028,
+      "priceChangePercent": -0.18460629774746554,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
+  },
+  {
+    "id": "BTC:2026-10-29T03:03:37.731Z",
+    "timestamp": "2026-10-29T03:03:37.731Z",
+    "coin": "BTC",
+    "priceAtSignal": 79868.50839615444,
+    "direction": "Neutral",
+    "confidence": "Low",
+    "bullBearScore": 47,
+    "componentScores": {
+      "momentum": 45.449220600000004,
+      "volume": 45,
+      "shortTerm": 49.97466218,
+      "mediumTerm": 42.71626332,
+      "longTerm": 46.24093834,
+      "volatility": 60,
+      "marketDirection": 44.827586206896555
+    },
+    "eligibleAt": "2026-10-29T04:03:37.731Z",
+    "status": "complete",
+    "oneHour": {
+      "targetTimestamp": "2026-10-29T04:03:37.731Z",
+      "actualTimestamp": "2026-10-29T04:00:00.000Z",
+      "skewSeconds": 217.731,
+      "price": 79752.93014279513,
+      "priceChangePercent": -0.14471066967475818,
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
+    }
   }
 ]
