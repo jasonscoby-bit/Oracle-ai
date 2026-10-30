@@ -1,0 +1,30 @@
+name: BullBear Reporting Tests
+
+on:
+  pull_request:
+    paths:
+      - "bullbear_component_analysis.js"
+      - "bullbear_component_analysis.test.js"
+      - "bullbear_score_analysis.js"
+      - ".github/workflows/bullbear-reporting-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reporting-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run component analysis unit tests
+        run: node --test bullbear_component_analysis.test.js
+      - name: Verify reporting scripts parse
+        run: |
+          node --check bullbear_component_analysis.js
+          node --check bullbear_score_analysis.js
