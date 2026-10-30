@@ -4,6 +4,9 @@ const filePath = "./data/bullbear_signal_performance.json";
 
 const records = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
+// Bands below this count are exploratory; keep the raw result visible but do not overstate it.
+const MIN_SAMPLE_SIZE = 30;
+
 const scored = records.filter(record =>
   record.status === "complete" &&
   ["correct", "incorrect"].includes(record.oneHour?.result) &&
@@ -41,8 +44,12 @@ for (const band of bands) {
     ? ((correct / matches.length) * 100).toFixed(2)
     : "N/A";
 
+  const sampleNote = matches.length > 0 && matches.length < MIN_SAMPLE_SIZE
+    ? ` [EXPLORATORY: n<${MIN_SAMPLE_SIZE}]`
+    : "";
+
   console.log(
-    `${band.name}: ${correct}/${matches.length} correct (${accuracy}%)`
+    `${band.name}: ${correct}/${matches.length} correct (${accuracy}%)${sampleNote}`
   );
 
   if (matches.length > 0) {
