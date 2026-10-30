@@ -28,7 +28,7 @@ function analyzeComponents(records = loadPerformance(), log = console.log) {
   function report(label, group) {
     const correct = group.filter(record => record.oneHour.result === "correct");
     const incorrect = group.filter(record => record.oneHour.result === "incorrect");
-    log("\\n" + label);
+    log("\n" + label);
     log("Signals: " + group.length + " | Correct: " + correct.length + " | Incorrect: " + incorrect.length);
     for (const component of COMPONENTS) {
       const correctValues = correct.map(record => record.componentScores?.[component]).filter(value => typeof value === "number" && Number.isFinite(value));
