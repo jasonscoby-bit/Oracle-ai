@@ -5,7 +5,11 @@ on:
     paths:
       - "bullbear_component_analysis.js"
       - "bullbear_component_analysis.test.js"
-      - "bullbear_score_analysis.js"\n      - "bullbear_evaluator.js"\n      - "bullbear_evaluator.test.js"\n      - "bullbear_calibration.js"\n      - "bullbear_calibration.test.js"
+      - "bullbear_score_analysis.js"
+      - "bullbear_evaluator.js"
+      - "bullbear_evaluator.test.js"
+      - "bullbear_calibration.js"
+      - "bullbear_calibration.test.js"
       - ".github/workflows/bullbear-reporting-tests.yml"
   workflow_dispatch:
 
@@ -24,7 +28,13 @@ jobs:
           node-version: 20
       - name: Run component analysis unit tests
         run: node --test bullbear_component_analysis.test.js
-      - name: Run evaluator regression tests\n        run: node --test bullbear_evaluator.test.js\n      - name: Run calibration regression tests\n        run: node --test bullbear_calibration.test.js\n      - name: Verify reporting scripts parse
+      - name: Run evaluator regression tests
+        run: node --test bullbear_evaluator.test.js
+      - name: Run calibration regression tests
+        run: node --test bullbear_calibration.test.js
+      - name: Verify reporting scripts parse
         run: |
           node --check bullbear_component_analysis.js
-          node --check bullbear_score_analysis.js\n          node --check bullbear_evaluator.js\n          node --check bullbear_calibration.js
+          node --check bullbear_score_analysis.js
+          node --check bullbear_evaluator.js
+          node --check bullbear_calibration.js
