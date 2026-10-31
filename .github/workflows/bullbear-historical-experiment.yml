@@ -1,0 +1,31 @@
+name: BullBear Historical Experiment
+
+on:
+  push:
+    paths:
+      - "bullbear_historical_experiment.js"
+      - "bullbear_historical_experiment.test.js"
+      - "data/bullbear_signal_performance.json"
+      - ".github/workflows/bullbear-historical-experiment.yml"
+  pull_request:
+    paths:
+      - "bullbear_historical_experiment.js"
+      - "bullbear_historical_experiment.test.js"
+      - "data/bullbear_signal_performance.json"
+      - ".github/workflows/bullbear-historical-experiment.yml"
+  workflow_dispatch:
+
+jobs:
+  historical-experiment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run experiment regression tests
+        run: node --test bullbear_historical_experiment.test.js
+      - name: Verify experiment script syntax
+        run: node --check bullbear_historical_experiment.js
+      - name: Run read-only historical experiment
+        run: node bullbear_historical_experiment.js --json
