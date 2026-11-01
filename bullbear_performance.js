@@ -109,7 +109,7 @@ async function calculatePerformance() {
   if (duplicateIds.length) {
     console.warn(`Skipped ${duplicateIds.length} duplicate signal record(s): ${[...new Set(duplicateIds)].join(", ")}`);
   }
-  const existing = readArray(PERFORMANCE_FILE);
+  const existing = readArray(PERFORMANCE_FILE).map(reclassifyCompletedEvaluation);
   const existingById = new Map(
     existing.map(record => [record.id || `${record.coin}:${record.timestamp}`, record])
   );
@@ -226,4 +226,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget, shouldEvaluateRecord };
+module.exports = { calculatePerformance, printAccuracyBreakdown, signalId, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, reclassifyCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget, shouldEvaluateRecord };
