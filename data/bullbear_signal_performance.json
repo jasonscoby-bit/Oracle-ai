@@ -12,7 +12,12 @@
       "actualTimestamp": "2026-09-13T03:20:00.000Z",
       "price": 77265.23628804338,
       "priceChangePercent": -0.0033925075341579448,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -28,7 +33,12 @@
       "actualTimestamp": "2026-09-13T03:55:00.000Z",
       "price": 77188.29231203368,
       "priceChangePercent": -0.1412944311081853,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -44,7 +54,12 @@
       "actualTimestamp": "2026-09-13T04:40:00.000Z",
       "price": 77186.12850953387,
       "priceChangePercent": -0.004537838617639799,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -60,7 +75,12 @@
       "actualTimestamp": "2026-09-14T00:40:00.000Z",
       "price": 76703.8084112444,
       "priceChangePercent": -0.07419221337401995,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 47.58884232,
@@ -85,7 +105,12 @@
       "actualTimestamp": "2026-09-14T03:45:00.000Z",
       "price": 77507.20393534307,
       "priceChangePercent": 0.07697011554632448,
-      "result": "incorrect"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 50.90852228,
@@ -110,7 +135,12 @@
       "actualTimestamp": "2026-09-14T04:50:00.000Z",
       "price": 77647.39160245133,
       "priceChangePercent": 0.2040800313719596,
-      "result": "incorrect"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 51.59681904,
@@ -135,7 +165,12 @@
       "actualTimestamp": "2026-09-14T05:55:00.000Z",
       "price": 77488.4486231385,
       "priceChangePercent": -0.1530890139509695,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 52.12112028,
@@ -160,7 +195,12 @@
       "actualTimestamp": "2026-09-14T14:50:00.000Z",
       "price": 78552.83239725228,
       "priceChangePercent": 0.3226431325995732,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 57.92910416,
@@ -185,7 +225,12 @@
       "actualTimestamp": "2026-09-14T14:55:00.000Z",
       "price": 78533.71007154856,
       "priceChangePercent": 0.397424850678889,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 57.054900599999996,
@@ -210,7 +255,12 @@
       "actualTimestamp": "2026-09-14T21:50:00.000Z",
       "price": 78796.53466189378,
       "priceChangePercent": -0.6591069999241518,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 60.336367960000004,
@@ -235,7 +285,12 @@
       "actualTimestamp": "2026-09-15T00:30:00.000Z",
       "price": 78000.28095412205,
       "priceChangePercent": -0.4094219054557014,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 57.9522074,
@@ -260,7 +315,12 @@
       "actualTimestamp": "2026-09-15T03:00:00.000Z",
       "price": 77890.82884857779,
       "priceChangePercent": -0.009379213345267458,
-      "result": "correct"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 54.3300472,
@@ -285,7 +345,12 @@
       "actualTimestamp": "2026-09-15T05:25:00.000Z",
       "price": 77364.2060786098,
       "priceChangePercent": -0.2750664365869415,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 49.73610132,
@@ -310,7 +375,12 @@
       "actualTimestamp": "2026-09-15T09:00:00.000Z",
       "price": 76961.04573455914,
       "priceChangePercent": 0.17295475744024164,
-      "result": "incorrect"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 45.09929172,
@@ -335,7 +405,12 @@
       "actualTimestamp": "2026-09-15T14:55:00.000Z",
       "price": 75861.66618272378,
       "priceChangePercent": -0.3875440993429246,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 39.43517836,
@@ -360,7 +435,12 @@
       "actualTimestamp": "2026-09-15T18:45:00.000Z",
       "price": 75749.94922216321,
       "priceChangePercent": -1.3810707525723558,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     },
     "componentScores": {
       "momentum": 39.79950256,
@@ -394,7 +474,12 @@
       "actualTimestamp": "2026-09-15T21:30:00.000Z",
       "price": 75619.82699050919,
       "priceChangePercent": -0.2148612546365763,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -419,7 +504,12 @@
       "actualTimestamp": "2026-09-16T00:10:00.000Z",
       "price": 75650.37347441482,
       "priceChangePercent": -0.24008925441667459,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -444,7 +534,12 @@
       "actualTimestamp": "2026-09-16T02:50:00.000Z",
       "price": 75927.6520265199,
       "priceChangePercent": 0.6060480283495118,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -469,7 +564,12 @@
       "actualTimestamp": "2026-09-16T07:50:00.000Z",
       "price": 75783.55533804506,
       "priceChangePercent": -0.12324123107175518,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -494,7 +594,12 @@
       "actualTimestamp": "2026-09-16T13:15:00.000Z",
       "price": 75728.47988004056,
       "priceChangePercent": -0.46420384147342447,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -519,7 +624,12 @@
       "actualTimestamp": "2026-09-16T18:20:00.000Z",
       "price": 75891.41314713168,
       "priceChangePercent": 0.23510080619603993,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -544,7 +654,12 @@
       "actualTimestamp": "2026-09-16T21:30:00.000Z",
       "price": 75999.50139514905,
       "priceChangePercent": -0.058089542157658124,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -569,7 +684,12 @@
       "actualTimestamp": "2026-09-17T00:15:00.000Z",
       "price": 76263.1256737701,
       "priceChangePercent": 0.5850973172496482,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -594,7 +714,12 @@
       "actualTimestamp": "2026-09-17T02:55:00.000Z",
       "price": 76284.02219141471,
       "priceChangePercent": -0.009553492799458304,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -619,7 +744,12 @@
       "actualTimestamp": "2026-09-17T08:05:00.000Z",
       "price": 76447.32398088809,
       "priceChangePercent": -0.1131332367236911,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -644,7 +774,12 @@
       "actualTimestamp": "2026-09-17T13:45:00.000Z",
       "price": 76051.96068681603,
       "priceChangePercent": -0.9996512120580303,
-      "result": "incorrect"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -669,7 +804,12 @@
       "actualTimestamp": "2026-09-17T18:15:00.000Z",
       "price": 76656.65853025294,
       "priceChangePercent": -0.06044217560538963,
-      "result": "incorrect"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -694,7 +834,12 @@
       "actualTimestamp": "2026-09-17T21:35:00.000Z",
       "price": 76495.87877504155,
       "priceChangePercent": -0.10511628896249418,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -719,7 +864,12 @@
       "actualTimestamp": "2026-09-18T00:10:00.000Z",
       "price": 76379.82590705452,
       "priceChangePercent": -0.05216195293372745,
-      "result": "incorrect"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -744,7 +894,12 @@
       "actualTimestamp": "2026-09-18T02:45:00.000Z",
       "price": 76872.55198552209,
       "priceChangePercent": 0.2879005057191568,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -769,7 +924,12 @@
       "actualTimestamp": "2026-09-18T07:45:00.000Z",
       "price": 77756.84132348854,
       "priceChangePercent": 0.3892701503318539,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -794,7 +954,12 @@
       "actualTimestamp": "2026-09-18T12:55:00.000Z",
       "price": 77982.2357133897,
       "priceChangePercent": -0.049124234737119604,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -819,7 +984,12 @@
       "actualTimestamp": "2026-09-18T16:15:00.000Z",
       "price": 80917.91612108119,
       "priceChangePercent": 0.01142951698240096,
-      "result": "correct"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -844,7 +1014,12 @@
       "actualTimestamp": "2026-09-18T19:40:00.000Z",
       "price": 81055.09470514061,
       "priceChangePercent": 0.006335471122532052,
-      "result": "correct"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -869,7 +1044,12 @@
       "actualTimestamp": "2026-09-18T22:15:00.000Z",
       "price": 81220.16106787091,
       "priceChangePercent": 0.030366695419023818,
-      "result": "correct"
+      "result": "flat",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -894,7 +1074,12 @@
       "actualTimestamp": "2026-09-19T00:40:00.000Z",
       "price": 81238.87419486717,
       "priceChangePercent": 0.420301199845443,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -919,7 +1104,12 @@
       "actualTimestamp": "2026-09-19T02:50:00.000Z",
       "price": 81285.94875733858,
       "priceChangePercent": 0.029303238252632938,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -944,7 +1134,12 @@
       "actualTimestamp": "2026-09-19T07:45:00.000Z",
       "price": 81028.25633159254,
       "priceChangePercent": -0.008880265446369127,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -969,7 +1164,12 @@
       "actualTimestamp": "2026-09-19T12:40:00.000Z",
       "price": 81247.8930388588,
       "priceChangePercent": 0.000681895617407858,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -994,7 +1194,12 @@
       "actualTimestamp": "2026-09-19T15:50:00.000Z",
       "price": 81682.97346275087,
       "priceChangePercent": 0.25984167913808887,
-      "result": "correct"
+      "result": "incorrect",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -1019,7 +1224,12 @@
       "actualTimestamp": "2026-09-19T18:30:00.000Z",
       "price": 81424.7989117308,
       "priceChangePercent": -0.013604283856295663,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
@@ -1044,7 +1254,12 @@
       "actualTimestamp": "2026-09-19T20:40:00.000Z",
       "price": 81243.55588671735,
       "priceChangePercent": -0.11545021411472614,
-      "result": "correct"
+      "result": "correct",
+      "policy": {
+        "directionalThresholdPercent": 0.1,
+        "neutralThresholdPercent": 0.25,
+        "maxPriceSkewSeconds": 300
+      }
     }
   },
   {
