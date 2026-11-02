@@ -103,6 +103,30 @@ function printAccuracyBreakdown(records) {
   console.log("========================================\n");
 }
 
+function reclassifyCompletedEvaluation(record) {
+  if (!record || record.status !== "complete" || !record.oneHour ||
+      typeof record.direction !== "string" ||
+      !Number.isFinite(Number(record.oneHour.priceChangePercent))) {
+    return record;
+  }
+
+  try {
+    const priceChangePercent = Number(record.oneHour.priceChangePercent);
+    const result = evaluateDirection({ direction: record.direction, priceChangePercent });
+    return {
+      ...record,
+      oneHour: {
+        ...record.oneHour,
+        result,
+        policy: { ...DEFAULT_EVALUATION_CONFIG }
+      }
+    };
+  } catch (error) {
+    // Preserve legacy records that cannot be safely classified.
+    return record;
+  }
+}
+
 async function calculatePerformance() {
   const rawSignals = readArray(HISTORY_FILE);
   const { signals, duplicateIds } = deduplicateSignals(rawSignals);
