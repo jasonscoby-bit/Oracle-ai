@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget } = require("./bullbear_performance");
+const { signalId, printAccuracyBreakdown, safeEvaluationTiming, deduplicateSignals, isCompletedEvaluation, preserveMissingExistingRecords, getEvaluationTarget, reclassifyCompletedEvaluation } = require("./bullbear_performance");
 
 test("signalId prefers stable IDs and supports legacy records", () => {
   assert.equal(signalId({ id: "signal-123", coin: "BTC", timestamp: "2026-10-28T00:00:00.000Z" }), "signal-123");
@@ -106,4 +106,27 @@ test("unavailable records are eligible for retry once their target time has pass
   assert.equal(shouldEvaluateRecord({ status: "pending" }, now, target), true);
   assert.equal(shouldEvaluateRecord({ status: "complete" }, now, target), false);
   assert.equal(shouldEvaluateRecord({ status: "unavailable" }, new Date("2026-10-28T00:59:00.000Z"), target), false);
+});
+
+
+test("completed evaluations are reclassified with the current evaluator policy", () => {
+  const legacy = {
+    id: "BTC:legacy",
+    direction: "Slightly Bullish",
+    status: "complete",
+    oneHour: { result: "correct", priceChangePercent: 0.0063, price: 80000 }
+  };
+  const result = reclassifyCompletedEvaluation(legacy);
+  assert.equal(result.oneHour.result, "flat");
+  assert.equal(result.oneHour.price, 80000);
+  assert.equal(result.oneHour.priceChangePercent, 0.0063);
+  assert.equal(result.oneHour.policy.directionalThresholdPercent, 0.1);
+  assert.equal(legacy.oneHour.result, "correct");
+});
+
+test("completed records without a usable direction or price change are preserved", () => {
+  const missingChange = { status: "complete", direction: "Neutral", oneHour: { result: "correct" } };
+  const missingDirection = { status: "complete", oneHour: { result: "correct", priceChangePercent: 0.3 } };
+  assert.equal(reclassifyCompletedEvaluation(missingChange), missingChange);
+  assert.equal(reclassifyCompletedEvaluation(missingDirection), missingDirection);
 });
